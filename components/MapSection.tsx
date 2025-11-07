@@ -42,7 +42,9 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
       map.dragPan.enable()
       map.boxZoom.enable()
       map.doubleClickZoom.enable()
+      // Enable touch interactions for mobile
       map.touchZoomRotate.enable()
+      map.touchPitch.enable()
     }
   }
 
@@ -55,10 +57,11 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
           interactive && 'opacity-0 pointer-events-none'
         )}
         onClick={enableInteraction}
+        onTouchStart={enableInteraction}
       >
-        <div className="text-center p-8">
-          <p className="text-white text-lg mb-2">explore local scenes</p>
-          <p className="text-white/60 text-sm">Scroll and drag to navigate</p>
+        <div className="text-center px-4 py-6 sm:p-8">
+          <p className="text-white text-base sm:text-lg mb-2">explore local scenes</p>
+          <p className="text-white/60 text-xs sm:text-sm">Tap to explore • Scroll to continue</p>
         </div>
       </div>
 
@@ -70,7 +73,11 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
           latitude: 5,
           zoom: 1.7,
         }}
-        style={{ width: '100%', height: '100%', minHeight: fullscreen ? '100vh' : '600px' }}
+        style={{ 
+          width: '100%', 
+          height: '100%', 
+          minHeight: fullscreen ? '100dvh' : '600px'
+        }}
         mapStyle="mapbox://styles/mapbox/dark-v11"
         onLoad={() => {
           if (mapRef.current) {
@@ -112,9 +119,9 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
               aria-label={`${city.name} marker`}
             >
               <div className="absolute inset-0 animate-pulse-slow bg-white/20 rounded-full blur-md" />
-              <div className="relative w-4 h-4 bg-white rounded-full border-2 border-white/30 shadow-lg" />
+              <div className="relative w-3 h-3 sm:w-4 sm:h-4 bg-white rounded-full border-2 border-white/30 shadow-lg" />
               {hoveredCity === city.name && (
-                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1 bg-black/80 text-white text-sm rounded-lg whitespace-nowrap pointer-events-none">
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 sm:px-3 py-1 bg-black/90 text-white text-xs sm:text-sm rounded-lg whitespace-nowrap pointer-events-none z-50">
                   {city.name}
                 </div>
               )}
@@ -127,25 +134,25 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
 
   if (fullscreen) {
     return (
-      <div className="absolute inset-0 w-full h-full" style={{ width: '100%', height: '100%', minHeight: '100vh' }}>
+      <div className="absolute inset-0 w-full h-full map-fullscreen">
         {mapContent}
       </div>
     )
   }
 
   return (
-    <section className="py-20 px-4">
+    <section className="py-12 sm:py-20 px-4">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 px-4">
             Communities lighting up worldwide
           </h2>
-          <p className="text-white/60 text-lg">
+          <p className="text-white/60 text-base sm:text-lg px-4">
             Pins indicate early scenes. Details coming soon.
           </p>
         </div>
 
-        <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-black/20 backdrop-blur-sm">
+        <div className="relative rounded-lg sm:rounded-2xl overflow-hidden border border-white/10 bg-black/20 backdrop-blur-sm">
           {mapContent}
         </div>
       </div>

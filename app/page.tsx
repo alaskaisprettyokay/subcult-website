@@ -48,7 +48,7 @@ export default function Home() {
             alt="Subcult"
             width={120}
             height={120}
-            className="w-auto h-auto max-w-[120px] object-contain opacity-90"
+            className="w-auto h-auto max-w-[80px] sm:max-w-[100px] md:max-w-[120px] object-contain opacity-90"
             priority
           />
         </div>
@@ -60,7 +60,7 @@ export default function Home() {
             alt="Subcult"
             width={200}
             height={60}
-            className="w-auto h-auto max-w-[200px] object-contain opacity-90"
+            className="w-auto h-auto max-w-[120px] sm:max-w-[160px] md:max-w-[200px] object-contain opacity-90"
             priority
           />
         </div>

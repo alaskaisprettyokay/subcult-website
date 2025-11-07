@@ -101,11 +101,21 @@ body {
 
   /* Hero Section */
   .hero {
-    @apply relative h-screen w-full overflow-hidden;
+    @apply relative w-full overflow-hidden;
+    height: 100dvh; /* Dynamic viewport height for iOS */
+    height: 100vh; /* Fallback for older browsers */
+    min-height: -webkit-fill-available; /* iOS Safari fix */
   }
 
   .hero__logo {
-    @apply absolute top-6 z-30;
+    @apply absolute z-30;
+    top: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .hero__logo {
+      top: 1.5rem;
+    }
   }
 
   .hero__logo--center {
@@ -113,7 +123,13 @@ body {
   }
 
   .hero__logo--right {
-    @apply right-6;
+    right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .hero__logo--right {
+      right: 1.5rem;
+    }
   }
 
   /* Signup Section */
@@ -168,4 +184,12 @@ body {
 .mapboxgl-ctrl-attrib {
   display: none !important;
 }
+
+/* Fullscreen map container for iOS compatibility */
+.map-fullscreen {
+  min-height: 100vh; /* Fallback for older browsers */
+  min-height: 100dvh; /* Dynamic viewport height for iOS */
+  min-height: -webkit-fill-available; /* iOS Safari specific fix */
+}
+
 
