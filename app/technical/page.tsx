@@ -88,7 +88,7 @@ export default function TechnicalPage() {
                   <p>
                     Events, mixes, releases, and zines are all shared directly inside scenes.
                     You can announce a party, stream a set, or post a flyer — and your audience sees it instantly.
-                    People nearby get updates in real time when something's happening.
+                    People nearby get updates in real time when something&apos;s happening.
                     Everything is designed to flow naturally between local audiences and connected scenes.
                     <br /><br />
                     <strong>Streaming is built on peer-to-peer (P2P) infrastructure.</strong> 
@@ -116,7 +116,7 @@ export default function TechnicalPage() {
                   <h3 className="text-2xl font-semibold mb-3">Frontend</h3>
                   <p>
                     The interface is designed to feel like a mix of a map, a radio, and a zine.
-                    It's built with modern web tools that make it fast, smooth, and accessible on any device.
+                    It&apos;s built with modern web tools that make it fast, smooth, and accessible on any device.
                     The map and sound layers are dynamic, loading local activity as you move.
                     The design language is clean, dark, and futuristic — inspired by club posters and underground flyers.
                   </p>
@@ -127,7 +127,7 @@ export default function TechnicalPage() {
                     Behind the scenes, Subcult runs a network that keeps everything fast, private, and secure.
                     Scenes store their own data safely, and content loads from nearby servers so it feels instant.
                     The system is modular — if one part goes down, the rest keeps working.
-                    It's built to handle bursts of traffic (like when an event drops) without slowing down.
+                    It&apos;s built to handle bursts of traffic (like when an event drops) without slowing down.
                   </p>
                 </div>
                 <div>
@@ -149,7 +149,7 @@ export default function TechnicalPage() {
                 Location data is optional and only shared when you choose to.
                 Personal info is never sold or tracked for ads — period.
                 Each scene manages its own members, and you can delete your data or account anytime.
-                It's about connection, not surveillance.
+                It&apos;s about connection, not surveillance.
               </p>
             </div>
 
@@ -158,7 +158,7 @@ export default function TechnicalPage() {
               <p className="text-white/80">
                 <strong>Finances are managed directly by the subcult themselves.</strong>
                 Each scene controls its own revenue, payments, and financial operations.
-                Whether it's event ticket sales, merchandise, or community funding, 
+                Whether it&apos;s event ticket sales, merchandise, or community funding, 
                 the money flows directly to the organizers and artists — no platform takes a cut.
                 This ensures that value stays within the community and supports the scenes that create it.
               </p>
@@ -187,7 +187,7 @@ export default function TechnicalPage() {
                 <li>Experimental radio nodes to broadcast live sets across connected spaces.</li>
               </ul>
               <p className="text-white/80 mt-4">
-                Subcult grows as the community grows — it's built to expand with every new sound that emerges.
+                Subcult grows as the community grows — it&apos;s built to expand with every new sound that emerges.
               </p>
             </div>
           </div>
