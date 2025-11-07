@@ -42,7 +42,7 @@ export default function TechnicalPage() {
               Technical Solutions
             </h1>
             <p className="text-xl text-white/70">
-              How we're building the infrastructure for underground communities
+              How we&apos;re building the infrastructure for underground communities
             </p>
           </div>
 
@@ -51,7 +51,7 @@ export default function TechnicalPage() {
               <h2 className="text-3xl font-bold">Architecture Overview</h2>
               <p className="text-white/80">
                 Subcult is built like the communities it serves — distributed, lightweight, and resilient.
-                It's a digital framework that connects local scenes and niche subgenres without relying on a single central platform.
+                It&apos;s a digital framework that connects local scenes and niche subgenres without relying on a single central platform.
                 Each part of the system — from maps to profiles to audio rooms — is designed to be independent yet connected, so communities can thrive on their own terms.
                 It scales naturally as more scenes appear and connect, just like the underground itself.
                 <br /><br />
@@ -103,7 +103,7 @@ export default function TechnicalPage() {
                     Subcult is built around conversation and collaboration.
                     Scenes have chat spaces, pinned updates, and shared resources.
                     You can plan an event, share a mix, or coordinate a pop-up with your crew.
-                    It's not about followers — it's about real connection between artists, organizers, and listeners.
+                    It&apos;s not about followers — it&apos;s about real connection between artists, organizers, and listeners.
                   </p>
                 </div>
               </div>

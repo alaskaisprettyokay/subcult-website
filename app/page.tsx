@@ -118,7 +118,7 @@ export default function Home() {
           </h2>
           <p className="text-lg text-white/70 leading-relaxed">
             Subcult connects artists, venues, and fans in underground music communities
-            around the world. We're building tools for scenes to thrive independently,
+            around the world. We&apos;re building tools for scenes to thrive independently,
             creating sustainable systems where local culture can flourish.
           </p>
         </div>

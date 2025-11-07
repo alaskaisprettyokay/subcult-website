@@ -52,7 +52,7 @@ export default function AboutPage() {
               <p className="text-white/80">
                 To connect the underground and local music communities. Create a home for artists, venues, scenes, fans,
                 and curators to connect and share with each other.
-                We're building a map of the underground: a network of trust, discovery, and creative autonomy.
+                We&apos;re building a map of the underground: a network of trust, discovery, and creative autonomy.
               </p>
             </div>
 
@@ -72,16 +72,16 @@ export default function AboutPage() {
               <h2 className="text-3xl font-bold">Our Solution</h2>
               <p className="text-white/80">
                 Subcult rebuilds the connective tissue of the underground.
-                It's not a social network — it's a discovery layer for local scenes.
+                It&apos;s not a social network — it&apos;s a discovery layer for local scenes.
                 Artists, collectives, and curators can share events, releases, and ideas in ways that stay true to their identity.
                 Each scene defines its own space, visual language, and membership.
                 <br /><br />
                 Instead of chasing followers, Subcult celebrates presence:
-                Who's around you.
-                Who's playing.
-                Who's building something real.
+                Who&apos;s around you.
+                Who&apos;s playing.
+                Who&apos;s building something real.
                 <br /><br />
-                It's a tool for connection — and a signal for where culture is actually happening.
+                It&apos;s a tool for connection — and a signal for where culture is actually happening.
               </p>
             </div>
 
@@ -97,7 +97,7 @@ export default function AboutPage() {
                   <li>
                     <strong>We believe culture belongs to those who create it.</strong>
                     <br />
-                    Platforms don't make communities — people do.
+                    Platforms don&apos;t make communities — people do.
                   </li>
                   <li>
                     <strong>We believe in connection without compromise.</strong>
@@ -112,7 +112,7 @@ export default function AboutPage() {
                   <li>
                     <strong>We believe in sound as a signal.</strong>
                     <br />
-                    Music isn't content — it's how we recognize one another across borders.
+                    Music isn&apos;t content — it&apos;s how we recognize one another across borders.
                   </li>
                 </ol>
               </div>
