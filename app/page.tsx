@@ -38,7 +38,7 @@ export default function Home() {
   const signupOpacity = Math.max(0, Math.min(1, (scrollProgress - 0.7) * 3))
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen" style={{ touchAction: 'pan-y', overflowY: 'auto' }}>
       {/* Hero Section with Map as main landing */}
       <div className="hero">
         {/* Small logo at top center */}

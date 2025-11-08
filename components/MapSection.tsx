@@ -15,6 +15,7 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
   const mapRef = useRef<MapRef>(null)
   const [interactive, setInteractive] = useState(false)
   const [hoveredCity, setHoveredCity] = useState<string | null>(null)
+  const touchStartY = useRef<number | null>(null)
 
   const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN
 
@@ -36,20 +37,57 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
     if (!interactive && mapRef.current) {
       setInteractive(true)
       const map = mapRef.current.getMap()
-      // Enable map interactions but keep scrollZoom disabled to allow page scrolling
-      // Users can still drag to pan and use double-click to zoom
-      map.scrollZoom.disable() // Keep disabled so page scrolling works
+      // Keep scrollZoom disabled to allow page scrolling
+      map.scrollZoom.disable()
+      // Enable drag pan but make it less aggressive on mobile
       map.dragPan.enable()
       map.boxZoom.enable()
       map.doubleClickZoom.enable()
-      // Enable touch interactions for mobile
+      // Enable touch interactions but allow vertical scrolling
       map.touchZoomRotate.enable()
       map.touchPitch.enable()
+      
+      // Get the map container and ensure it allows vertical scrolling
+      const container = map.getContainer()
+      if (container) {
+        container.style.touchAction = 'pan-x pan-y pinch-zoom'
+      }
+    }
+  }
+
+  // Handle touch events to allow vertical scrolling
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length === 1) {
+      touchStartY.current = e.touches[0].clientY
+      // Small delay to detect if it's a scroll or tap
+      setTimeout(() => {
+        if (touchStartY.current !== null) {
+          enableInteraction()
+        }
+      }, 150)
+    }
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    // If user is scrolling vertically, don't enable interaction
+    if (touchStartY.current !== null && e.touches.length === 1) {
+      const deltaY = Math.abs(e.touches[0].clientY - touchStartY.current)
+      if (deltaY > 10) {
+        // User is scrolling, cancel interaction enable
+        touchStartY.current = null
+      }
     }
   }
 
   const mapContent = (
-    <div className="relative w-full h-full" style={{ width: '100%', height: '100%' }}>
+    <div 
+      className="relative w-full h-full" 
+      style={{ 
+        width: '100%', 
+        height: '100%',
+        touchAction: 'pan-y pinch-zoom' // Allow vertical scrolling and pinch zoom
+      }}
+    >
       <div
         className={clsx(
           'absolute inset-0 z-10 flex items-center justify-center',
@@ -57,7 +95,9 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
           interactive && 'opacity-0 pointer-events-none'
         )}
         onClick={enableInteraction}
-        onTouchStart={enableInteraction}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        style={{ touchAction: 'pan-y' }} // Allow vertical scrolling through overlay
       >
         <div className="text-center px-4 py-6 sm:p-8">
           <p className="text-white text-base sm:text-lg mb-2">explore local scenes</p>
@@ -76,7 +116,8 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
         style={{ 
           width: '100%', 
           height: '100%', 
-          minHeight: fullscreen ? '100dvh' : '600px'
+          minHeight: fullscreen ? '100dvh' : '600px',
+          touchAction: interactive ? 'pan-x pan-y pinch-zoom' : 'pan-y pinch-zoom' // Always allow vertical scrolling
         }}
         mapStyle="mapbox://styles/mapbox/dark-v11"
         onLoad={() => {
@@ -87,6 +128,17 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
             map.boxZoom.disable()
             map.doubleClickZoom.disable()
             map.touchZoomRotate.disable()
+            
+            // Ensure the map container allows vertical scrolling
+            const container = map.getContainer()
+            if (container) {
+              container.style.touchAction = 'pan-y pinch-zoom'
+              // Also set on canvas
+              const canvas = container.querySelector('.mapboxgl-canvas')
+              if (canvas) {
+                ;(canvas as HTMLElement).style.touchAction = 'pan-y pinch-zoom'
+              }
+            }
             
             // Remove Mapbox logo and attribution
             const logo = map.getContainer().querySelector('.mapboxgl-ctrl-logo')

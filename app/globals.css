@@ -101,10 +101,12 @@ body {
 
   /* Hero Section */
   .hero {
-    @apply relative w-full overflow-hidden;
+    @apply relative w-full;
     height: 100dvh; /* Dynamic viewport height for iOS */
     height: 100vh; /* Fallback for older browsers */
     min-height: -webkit-fill-available; /* iOS Safari fix */
+    overflow: visible; /* Allow scrolling */
+    touch-action: pan-y; /* Allow vertical scrolling on mobile */
   }
 
   .hero__logo {
@@ -190,6 +192,15 @@ body {
   min-height: 100vh; /* Fallback for older browsers */
   min-height: 100dvh; /* Dynamic viewport height for iOS */
   min-height: -webkit-fill-available; /* iOS Safari specific fix */
+  /* Ensure scrolling works on mobile */
+  touch-action: pan-y pinch-zoom;
+  overflow: visible;
+}
+
+/* Ensure map container doesn't block scrolling */
+.mapboxgl-canvas-container,
+.mapboxgl-canvas {
+  touch-action: pan-y pinch-zoom !important;
 }
 
 
