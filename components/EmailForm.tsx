@@ -38,8 +38,8 @@ export default function EmailForm() {
         setCity('')
         setReferral('')
       } else {
-        if (result.error === 'Already joined') {
-          toast.info('Already joined')
+        if (result.error === 'ALREADY_ON_LIST') {
+          toast.info("You're already on the list! We'll reach out soon.")
         } else {
           toast.error(result.error || 'Something went wrong')
         }

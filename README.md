@@ -103,10 +103,12 @@ Coordinates are in `[longitude, latitude]` format.
 1. Push your code to GitHub
 2. Import the repository on [Vercel](https://vercel.com)
 3. Add environment variables:
-   - `NEXT_PUBLIC_MAPBOX_TOKEN` (required)
-   - `NEXT_PUBLIC_SUPABASE_URL` (optional)
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` (optional)
+   - `NEXT_PUBLIC_MAPBOX_TOKEN` (required) - Your Mapbox token
+   - `NEXT_PUBLIC_SUPABASE_URL` (required for production) - Your Supabase project URL
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` (required for production) - Your Supabase anon key
 4. Deploy!
+
+**Important**: For email subscriptions to work on Vercel, you **must** set up Supabase. See `VERCEL_SETUP.md` for detailed instructions.
 
 The app will automatically build and deploy.
 
