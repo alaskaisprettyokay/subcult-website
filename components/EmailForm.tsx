@@ -63,7 +63,7 @@ export default function EmailForm() {
             userType === 'user' ? 'form-button--active' : 'form-button--secondary'
           )}
         >
-          User
+          Listener
         </button>
         <button
           type="button"
@@ -73,7 +73,7 @@ export default function EmailForm() {
             userType === 'curator' ? 'form-button--active' : 'form-button--secondary'
           )}
         >
-          Scene Curator
+          Curator / Artist
         </button>
       </div>
 
