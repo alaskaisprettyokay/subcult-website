@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, useCallback } from 'react'
 import Map, { Marker, MapRef } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { cities, City } from '@/lib/cities'
@@ -20,21 +20,11 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
 
   const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN
 
-  if (!mapboxToken) {
-    return (
-      <section className="py-12 sm:py-20 px-4">
-        <div className="max-w-7xl mx-auto text-center">
-          <p className="text-white/50">Mapbox token not configured</p>
-        </div>
-      </section>
-    )
-  }
-
   const handleMarkerClick = (city: City) => {
     toast.info('Private beta — request an invite to access.')
   }
 
-  const enableInteraction = () => {
+  const enableInteraction = useCallback(() => {
     if (!interactive && mapRef.current && !isScrollingRef.current) {
       setInteractive(true)
       const map = mapRef.current.getMap()
@@ -48,7 +38,7 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
       map.touchZoomRotate.enable()
       map.touchPitch.enable()
     }
-  }
+  }, [interactive])
 
   // Detect vertical scrolling to prevent map interaction
   useEffect(() => {
@@ -105,7 +95,18 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
       overlay.removeEventListener('touchend', handleTouchEnd)
       clearTimeout(scrollTimeout)
     }
-  }, [fullscreen, interactive])
+  }, [fullscreen, enableInteraction])
+
+  // Early return after all hooks
+  if (!mapboxToken) {
+    return (
+      <section className="py-12 sm:py-20 px-4">
+        <div className="max-w-7xl mx-auto text-center">
+          <p className="text-white/50">Mapbox token not configured</p>
+        </div>
+      </section>
+    )
+  }
 
   const mapContent = (
     <div 
