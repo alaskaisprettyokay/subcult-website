@@ -15,13 +15,30 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
   const mapRef = useRef<MapRef>(null)
   const [interactive, setInteractive] = useState(false)
   const [hoveredCity, setHoveredCity] = useState<string | null>(null)
+  const [selectedCityId, setSelectedCityId] = useState<string | null>(null)
   const overlayRef = useRef<HTMLDivElement>(null)
   const isScrollingRef = useRef(false)
 
   const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN
 
-  const handleMarkerClick = (city: City) => {
-    toast.info('Private beta — request an invite to access.')
+  const scrollToSignup = useCallback(() => {
+    const signupSection = document.querySelector('#signup, .signup-section')
+    if (signupSection) {
+      signupSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      // Focus the email input after scrolling
+      setTimeout(() => {
+        const emailInput = document.querySelector('input[type="email"]') as HTMLInputElement
+        if (emailInput) {
+          emailInput.focus()
+        }
+      }, 500)
+    }
+  }, [])
+
+  const handleMarkerClick = (city: City, uniqueId: string) => {
+    setSelectedCityId(uniqueId)
+    // Auto-scroll to signup on click
+    scrollToSignup()
   }
 
   const enableInteraction = useCallback(() => {
@@ -39,6 +56,30 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
       map.touchPitch.enable()
     }
   }, [interactive])
+
+  // Close tooltip when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (selectedCityId) {
+        const target = e.target as HTMLElement
+        // Don't close if clicking on the tooltip or marker button
+        if (!target.closest('.marker-tooltip') && !target.closest('button[aria-label*="marker"]')) {
+          setSelectedCityId(null)
+        }
+      }
+    }
+    
+    if (selectedCityId) {
+      // Use a small delay to avoid closing immediately on marker click
+      const timeout = setTimeout(() => {
+        document.addEventListener('click', handleClickOutside)
+      }, 100)
+      return () => {
+        clearTimeout(timeout)
+        document.removeEventListener('click', handleClickOutside)
+      }
+    }
+  }, [selectedCityId])
 
   // Detect vertical scrolling to prevent map interaction
   useEffect(() => {
@@ -191,31 +232,72 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
         attributionControl={false}
         logoPosition="bottom-right"
       >
-        {cities.map((city) => (
-          <Marker
-            key={city.name}
-            longitude={city.coordinates[0]}
-            latitude={city.coordinates[1]}
-            anchor="center"
-          >
-            <button
-              type="button"
-              className="relative min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer group touch-manipulation"
-              onClick={() => handleMarkerClick(city)}
-              onMouseEnter={() => setHoveredCity(city.name)}
-              onMouseLeave={() => setHoveredCity(null)}
-              aria-label={`${city.name} marker`}
+        {cities.map((city, index) => {
+          const displayName = city.stationName || city.name
+          // Use a unique identifier combining name, station, and index for cities with same name
+          const uniqueId = `${city.name}-${city.stationName || ''}-${index}`
+          const isHovered = hoveredCity === uniqueId
+          const isSelected = selectedCityId === uniqueId
+          
+          return (
+            <Marker
+              key={uniqueId}
+              longitude={city.coordinates[0]}
+              latitude={city.coordinates[1]}
+              anchor="center"
             >
-              <div className="absolute inset-0 animate-pulse-slow bg-white/20 rounded-full blur-md" />
-              <div className="relative w-3 h-3 sm:w-4 sm:h-4 bg-white rounded-full border-2 border-white/30 shadow-lg" />
-              {hoveredCity === city.name && (
-                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 sm:px-3 py-1 bg-black/90 text-white text-xs sm:text-sm rounded-lg whitespace-nowrap pointer-events-none z-50">
-                  {city.name}
-                </div>
-              )}
-            </button>
-          </Marker>
-        ))}
+              <button
+                type="button"
+                className="relative min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer group touch-manipulation"
+                onClick={() => handleMarkerClick(city, uniqueId)}
+                onMouseEnter={() => setHoveredCity(uniqueId)}
+                onMouseLeave={() => {
+                  setHoveredCity(null)
+                  // Keep selected city visible for a moment after hover
+                  if (selectedCityId === uniqueId) {
+                    setTimeout(() => setSelectedCityId(null), 200)
+                  }
+                }}
+                aria-label={`${displayName} marker`}
+              >
+                <div className="absolute inset-0 animate-pulse-slow bg-white/20 rounded-full blur-md" />
+                <div className="relative w-3 h-3 sm:w-4 sm:h-4 bg-white rounded-full border-2 border-white/30 shadow-lg" />
+                {(isHovered || isSelected) && (
+                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-50 marker-tooltip">
+                    <div className="bg-black/95 text-white text-xs sm:text-sm rounded-lg shadow-xl border border-white/10 min-w-[140px] max-w-[220px] px-3 py-2">
+                      {city.stationName ? (
+                        <>
+                          <div className="font-semibold text-sm sm:text-base mb-1">
+                            {city.stationName}
+                          </div>
+                          <div className="text-white/70 text-xs mb-1">
+                            {city.name}
+                          </div>
+                          {city.genre && (
+                            <div className="text-white/50 text-xs">
+                              {city.genre}
+                            </div>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          <div className="font-semibold text-sm sm:text-base mb-1">
+                            {city.name}
+                          </div>
+                          {city.genre && (
+                            <div className="text-white/50 text-xs">
+                              {city.genre}
+                            </div>
+                          )}
+                        </>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </button>
+            </Marker>
+          )
+        })}
       </Map>
     </div>
   )

@@ -77,7 +77,7 @@ export default function Home() {
       <div className="h-[20vh] sm:h-[30vh]" />
 
       {/* Signup Section - appears after scrolling */}
-      <Section className="signup-section">
+      <Section id="signup" className="signup-section">
         <div 
           className="signup-section__content"
           style={{ opacity: signupOpacity }}
