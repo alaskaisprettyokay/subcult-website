@@ -56,14 +56,11 @@ export const cities: City[] = [
   
   // UNITED STATES - CALIFORNIA
   { name: 'Santa Rosa, California', coordinates: [-122.7141, 38.4404], stationName: '95.9 The Krush (KRSH)', genre: 'Singer-Songwriter/Adult Alternative', isStation: true },
-  { name: 'Lompoc, California', coordinates: [-120.4579, 34.6392], stationName: 'Radio U', genre: 'Rock/Alternative Christian', isStation: true },
   { name: 'Los Angeles', coordinates: [-118.2437, 34.0522], stationName: 'The So Cal Sound (KCSN)', genre: 'Rock/Smart Rock', isStation: true },
-  { name: 'Sacramento, California', coordinates: [-121.4944, 38.5816], stationName: 'Family Radio', genre: 'Christian', isStation: true },
   { name: 'Fremont, California', coordinates: [-121.9886, 37.5483], stationName: 'La Tricolor', genre: 'Bollywood/South Asian', isStation: true },
   
   // UNITED STATES - NEW YORK
   { name: 'New York', coordinates: [-74.0060, 40.7128], stationName: 'WNYC', genre: 'Public Radio/NPR', isStation: true },
-  { name: 'Mount Kisco, New York', coordinates: [-73.7146, 41.2043], stationName: 'Family Radio East', genre: 'Christian/Talk', isStation: true },
   { name: 'New York', coordinates: [-74.0060, 40.7128], stationName: 'TUDN', genre: 'Sports (Spanish)', isStation: true },
   
   // UNITED STATES - ILLINOIS
@@ -76,20 +73,13 @@ export const cities: City[] = [
   { name: 'Garden City, Kansas', coordinates: [-100.8728, 37.9717], stationName: 'High Plains Public Radio', genre: 'Public/NPR', isStation: true },
   
   // UNITED STATES - NEBRASKA
-  { name: 'Waverly, Nebraska', coordinates: [-96.5283, 40.9083], stationName: 'My Bridge Radio', genre: 'Christian', isStation: true },
   { name: 'Lincoln, Nebraska', coordinates: [-96.7026, 40.8136], stationName: 'Nebraska Public Media', genre: 'Public/NPR/Classical', isStation: true },
-  
-  // UNITED STATES - MONTANA
-  { name: 'Havre, Montana', coordinates: [-109.6844, 48.5450], stationName: 'YNOP', genre: 'Christian Network', isStation: true },
   
   // UNITED STATES - WASHINGTON
   { name: 'Tacoma, Washington', coordinates: [-122.4446, 47.2529], stationName: 'Black Information Network', genre: 'News/Talk', isStation: true },
   
   // UNITED STATES - GEORGIA
   { name: 'Atlanta, Georgia', coordinates: [-84.3880, 33.7490], stationName: 'GPB Radio', genre: 'Public Broadcasting', isStation: true },
-  
-  // UNITED STATES - NORTH DAKOTA
-  { name: 'Fargo, North Dakota', coordinates: [-96.7898, 46.8772], stationName: 'Real Presence Radio', genre: 'Catholic', isStation: true },
   
   // UNITED STATES - WYOMING
   { name: 'Laramie, Wyoming', coordinates: [-105.5911, 41.3114], stationName: 'Wyoming Public Radio', genre: 'Public/Classical/Alternative', isStation: true },
@@ -125,9 +115,6 @@ export const cities: City[] = [
   // CANADA - BRITISH COLUMBIA
   { name: 'Vancouver, British Columbia', coordinates: [-123.1216, 49.2827], stationName: 'Fairchild Radio FM 96.1', genre: 'Chinese/Multicultural', isStation: true },
   { name: 'Vancouver, British Columbia', coordinates: [-123.1216, 49.2827], stationName: 'Rock 101', genre: 'Classic Rock', isStation: true },
-  
-  // CANADA - NEWFOUNDLAND
-  { name: 'Mount Pearl, Newfoundland', coordinates: [-52.8053, 47.5162], stationName: 'Lighthouse FM', genre: 'Gospel/Christian', isStation: true },
   
   // CANADA - NOVA SCOTIA
   { name: 'Halifax, Nova Scotia', coordinates: [-63.5752, 44.6488], stationName: 'CBC Radio One', genre: 'Public Radio', isStation: true },
@@ -167,7 +154,6 @@ export const cities: City[] = [
   { name: 'Melbourne, Australia', coordinates: [144.9631, -37.8136], stationName: 'Triple R (3RRR)', genre: 'Community/Independent', isStation: true },
   
   // SPECIALTY/ONLINE STATIONS
-  { name: 'Mesa, Arizona', coordinates: [-111.8315, 33.4152], stationName: 'Abiding Radio', genre: 'Bluegrass Hymns/Christian', isStation: true },
   { name: 'Douglas, Isle of Man', coordinates: [-4.4773, 54.1523], stationName: '1Mix Radio', genre: 'Trance', isStation: true },
 ]
 
