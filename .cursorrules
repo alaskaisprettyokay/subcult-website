@@ -1,0 +1,346 @@
+# Mobile-First Next.js Project Rules
+
+## Project Context
+This is a Next.js application optimized for mobile devices. All code must prioritize mobile experience first, then scale up to desktop.
+
+## Core Development Principles
+
+### 1. Mobile-First Always
+- Write base styles for mobile (320px+)
+- Use min-width media queries to scale up
+- Default behavior should work on touch devices
+- Test mentally at: 320px, 375px, 390px, 768px, 1024px, 1440px
+
+### 2. Touch-First Interactions
+- Minimum touch target: 44px × 44px (48px preferred)
+- 8px minimum spacing between interactive elements
+- Never rely on hover states for critical functionality
+- All interactions must work with touch/tap
+
+### 3. Performance Critical
+- Use Next.js Image component for ALL images
+- Lazy load below-the-fold content
+- Minimize JavaScript bundle size
+- Target: LCP < 2.5s, CLS < 0.1
+
+## Mandatory Code Patterns
+
+### Images - ALWAYS use Next.js Image
+```tsx
+import Image from 'next/image'
+
+<Image
+  src="/image.jpg"
+  alt="Description"
+  width={800}
+  height={600}
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+  priority // only for above-fold
+/>
+```
+
+### Responsive Layout - Mobile First
+```tsx
+// Tailwind
+<div className="p-4 md:p-6 lg:p-8">
+  <h1 className="text-2xl md:text-3xl lg:text-4xl">
+    
+// CSS
+.component {
+  padding: 16px; /* mobile base */
+}
+@media (min-width: 768px) {
+  .component { padding: 24px; }
+}
+@media (min-width: 1024px) {
+  .component { padding: 32px; }
+}
+```
+
+### Touch-Friendly Buttons
+```tsx
+<button className="min-h-[44px] min-w-[44px] px-6 py-3
+                   focus:outline-none focus:ring-2 focus:ring-offset-2">
+  Click Me
+</button>
+```
+
+### Navigation Pattern
+```tsx
+// Mobile: Hamburger menu
+// Desktop: Full nav bar
+<nav>
+  <button className="md:hidden min-h-[44px] min-w-[44px]" aria-label="Menu">
+    <MenuIcon />
+  </button>
+  <div className="hidden md:flex">
+    {/* Desktop nav items */}
+  </div>
+</nav>
+```
+
+### Forms - Mobile Optimized
+```tsx
+<input
+  type="email"
+  className="w-full h-12 px-4 text-base" // 16px min to prevent zoom
+  placeholder="Email"
+/>
+<button className="w-full h-12 md:w-auto md:px-8">
+  Submit
+</button>
+```
+
+### Grid Layouts - Stack Mobile, Grid Desktop
+```tsx
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  {items.map(item => <Card key={item.id} {...item} />)}
+</div>
+```
+
+### Modals - Full Screen Mobile
+```tsx
+<div className="fixed inset-0 md:flex md:items-center md:justify-center">
+  <div className="h-full w-full md:h-auto md:max-w-lg md:rounded-lg">
+    {/* Modal content */}
+  </div>
+</div>
+```
+
+## Typography Rules
+- Base font size: 16px minimum (prevents iOS zoom)
+- Line height: 1.5+ for readability
+- Headings scale: text-2xl md:text-3xl lg:text-4xl
+- Max line width: 75ch for readability
+
+## Required Metadata
+```tsx
+// In layout.tsx or page.tsx
+export const metadata = {
+  viewport: 'width=device-width, initial-scale=1, maximum-scale=5',
+}
+```
+
+## Safe Area Insets (Notched Devices)
+```css
+.header {
+  padding-top: max(16px, env(safe-area-inset-top));
+}
+.footer {
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+```
+
+## Performance Patterns
+
+### Dynamic Imports
+```tsx
+import dynamic from 'next/dynamic'
+
+const HeavyComponent = dynamic(() => import('./Heavy'), {
+  loading: () => <Skeleton />,
+  ssr: false // if not needed
+})
+```
+
+### Font Optimization
+```tsx
+import { Inter } from 'next/font/google'
+const inter = Inter({ subsets: ['latin'], display: 'swap' })
+```
+
+### Minimize Client Components
+- Use Server Components by default (App Router)
+- Only add 'use client' when needed for:
+  - useState, useEffect, event handlers
+  - Browser APIs
+  - Third-party libraries requiring client
+
+## Accessibility Requirements
+- All interactive elements keyboard accessible
+- ARIA labels on icon buttons
+- Focus indicators visible (focus:ring-2)
+- Color contrast WCAG AA minimum
+- Alt text on all images
+
+```tsx
+<button aria-label="Close" className="focus:ring-2 focus:ring-blue-500">
+  <XIcon aria-hidden="true" />
+</button>
+```
+
+## Code Organization
+
+### Component Structure
+```tsx
+'use client' // only if needed
+
+import { useState } from 'react'
+import Image from 'next/image'
+
+interface Props {
+  // Props here
+}
+
+export default function Component({ prop }: Props) {
+  // Component logic
+  
+  return (
+    <div className="mobile-first-classes">
+      {/* JSX */}
+    </div>
+  )
+}
+```
+
+## Common Mistakes to AVOID
+
+❌ **Never do:**
+- max-width media queries as primary breakpoints
+- Fixed pixel widths on mobile containers
+- Hover-dependent functionality
+- Touch targets smaller than 44px
+- Missing alt text on images
+- <img> tag instead of next/image
+- Horizontal scroll
+- vh units without fallbacks
+- Ignoring network performance
+
+✅ **Always do:**
+- min-width media queries (mobile-first)
+- Relative units (%, rem, em)
+- Touch-friendly alternatives to hover
+- 44px+ touch targets
+- Alt text on all images
+- Next.js Image component
+- overflow-x: hidden on body
+- Test with network throttling
+- Optimize for 3G/4G
+
+## Breakpoint Reference
+```
+320px  - Small mobile
+375px  - iPhone SE, 13 mini
+390px  - iPhone 14/15
+430px  - iPhone Pro Max
+768px  - Tablet (md:)
+1024px - Desktop (lg:)
+1440px - Large desktop (xl:)
+```
+
+## CSS Best Practices
+
+### Prevent Horizontal Scroll
+```css
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+```
+
+### Container Pattern
+```tsx
+<div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+  {/* Content */}
+</div>
+```
+
+### Spacing Scale (Tailwind)
+```
+Mobile:  p-4 gap-4 space-y-4
+Tablet:  md:p-6 md:gap-6 md:space-y-6
+Desktop: lg:p-8 lg:gap-8 lg:space-y-8
+```
+
+## Testing Checklist
+Before considering code complete, verify:
+- [ ] Works on 320px width
+- [ ] Works on 768px width
+- [ ] Works on 1440px width
+- [ ] All touch targets 44px+
+- [ ] No horizontal scroll
+- [ ] Images use next/image
+- [ ] Buttons are keyboard accessible
+- [ ] Focus states visible
+- [ ] Works without hover
+- [ ] Loads fast on 3G
+
+## Component Examples
+
+### Card Component
+```tsx
+export default function Card({ title, image, description }: Props) {
+  return (
+    <article className="bg-white rounded-lg overflow-hidden shadow-md">
+      <div className="relative w-full h-48 md:h-64">
+        <Image
+          src={image}
+          alt={title}
+          fill
+          sizes="(max-width: 768px) 100vw, 384px"
+          className="object-cover"
+        />
+      </div>
+      <div className="p-4 md:p-6">
+        <h3 className="text-xl md:text-2xl font-bold mb-2">{title}</h3>
+        <p className="text-base text-gray-700">{description}</p>
+      </div>
+    </article>
+  )
+}
+```
+
+### Button Component
+```tsx
+export default function Button({ children, variant = 'primary' }: Props) {
+  return (
+    <button className="min-h-[44px] px-6 py-3 rounded-lg font-medium
+                       transition-colors
+                       focus:outline-none focus:ring-2 focus:ring-offset-2
+                       bg-blue-600 hover:bg-blue-700 active:bg-blue-800
+                       text-white focus:ring-blue-500">
+      {children}
+    </button>
+  )
+}
+```
+
+### Responsive Container
+```tsx
+export default function Container({ children }: Props) {
+  return (
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {children}
+    </div>
+  )
+}
+```
+
+## When to Use Client Components
+
+Add 'use client' ONLY when you need:
+- React hooks (useState, useEffect, useContext, etc.)
+- Event handlers (onClick, onChange, etc.)
+- Browser APIs (window, document, localStorage, etc.)
+- Third-party libraries that use client features
+
+Otherwise, use Server Components for better performance.
+
+## Summary
+
+When writing ANY code:
+1. Start mobile, scale up with min-width queries
+2. Use next/image for ALL images
+3. Ensure 44px minimum touch targets
+4. Make navigation work on mobile (hamburger menu)
+5. Avoid hover-dependent features
+6. Optimize for performance
+7. Test mentally at 320px, 768px, 1024px
+8. Use semantic HTML + accessibility
+9. Keep bundle size minimal
+10. Server Components by default
+
+This is not optional. All code must follow these rules.

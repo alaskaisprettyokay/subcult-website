@@ -4,29 +4,30 @@ import Section from '@/components/Section'
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-[#0a0a0a]">
       {/* Header with logo */}
-      <header className="relative py-6 px-4 border-b border-white/10">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <Link href="/" className="flex items-center">
+      <header className="relative py-4 sm:py-6 px-4 border-b border-white/10 bg-[#0a0a0a]" style={{ paddingTop: 'max(1rem, env(safe-area-inset-top, 1rem))' }}>
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+          <Link href="/" className="flex items-center min-h-[44px]">
             <Image
               src="/subcult-vector.png"
               alt="Subcult"
               width={80}
               height={80}
-              className="w-auto h-auto max-w-[80px] object-contain opacity-90"
+              className="w-auto h-auto max-w-[60px] sm:max-w-[80px] object-contain opacity-90"
+              sizes="(max-width: 640px) 60px, 80px"
             />
           </Link>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
             <Link
               href="/technical"
-              className="text-white/60 hover:text-white/80 text-sm underline transition-colors"
+              className="text-white/60 hover:text-white/80 active:text-white text-sm sm:text-base underline transition-colors min-h-[44px] flex items-center"
             >
               Technical
             </Link>
             <Link
               href="/"
-              className="text-white/60 hover:text-white/80 text-sm underline transition-colors"
+              className="text-white/60 hover:text-white/80 active:text-white text-sm sm:text-base underline transition-colors min-h-[44px] flex items-center"
             >
               Back to home
             </Link>
@@ -38,17 +39,17 @@ export default function AboutPage() {
       <Section className="max-w-4xl mx-auto">
         <div className="space-y-12">
           <div className="text-center space-y-4">
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
               What is Subcult?
             </h1>
-            <p className="text-xl text-white/70">
+            <p className="text-base sm:text-lg md:text-xl text-white/70">
               A manifesto for underground music communities
             </p>
           </div>
 
-          <div className="prose prose-invert max-w-none space-y-8 text-lg leading-relaxed">
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold">Our Vision</h2>
+          <div className="prose prose-invert max-w-none space-y-6 sm:space-y-8 text-base sm:text-lg leading-relaxed">
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-2xl sm:text-3xl font-bold">Our Vision</h2>
               <p className="text-white/80">
                 To connect the underground and local music communities. Create a home for artists, venues, scenes, fans,
                 and curators to connect and share with each other.
@@ -56,8 +57,8 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold">The Problem</h2>
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-2xl sm:text-3xl font-bold">The Problem</h2>
               <p className="text-white/80">
                 Underground music scenes are scattered.
                 Algorithms bury them, platforms flatten them, and cities push them out.
@@ -68,8 +69,8 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold">Our Solution</h2>
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-2xl sm:text-3xl font-bold">Our Solution</h2>
               <p className="text-white/80">
                 Subcult rebuilds the connective tissue of the underground.
                 It&apos;s not a social network — it&apos;s a discovery layer for local scenes.
@@ -85,8 +86,8 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold">The Manifesto</h2>
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-2xl sm:text-3xl font-bold">The Manifesto</h2>
               <div className="space-y-4 text-white/80">
                 <ol className="list-decimal list-inside space-y-4 ml-4">
                   <li>
@@ -118,8 +119,8 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold">Join Us</h2>
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-2xl sm:text-3xl font-bold">Join Us</h2>
               <p className="text-white/80">
               Subcult is opening the door to the next generation of underground culture.
               Join the waitlist, become a curator, or help map your local scene.
@@ -128,7 +129,7 @@ export default function AboutPage() {
               <div className="pt-4">
                 <Link
                   href="/"
-                  className="inline-block px-6 py-3 rounded-lg font-medium bg-white text-black hover:bg-white/90 transition-all"
+                  className="inline-block px-6 py-3 rounded-lg font-medium bg-white text-black hover:bg-white/90 active:bg-white/80 transition-all min-h-[44px] flex items-center justify-center"
                 >
                   Join the waitlist
                 </Link>

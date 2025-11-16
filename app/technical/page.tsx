@@ -4,29 +4,30 @@ import Section from '@/components/Section'
 
 export default function TechnicalPage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-[#0a0a0a]">
       {/* Header with logo */}
-      <header className="relative py-6 px-4 border-b border-white/10">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <Link href="/" className="flex items-center">
+      <header className="relative py-4 sm:py-6 px-4 border-b border-white/10 bg-[#0a0a0a]" style={{ paddingTop: 'max(1rem, env(safe-area-inset-top, 1rem))' }}>
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+          <Link href="/" className="flex items-center min-h-[44px]">
             <Image
               src="/subcult-vector.png"
               alt="Subcult"
               width={80}
               height={80}
-              className="w-auto h-auto max-w-[80px] object-contain opacity-90"
+              className="w-auto h-auto max-w-[60px] sm:max-w-[80px] object-contain opacity-90"
+              sizes="(max-width: 640px) 60px, 80px"
             />
           </Link>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
             <Link
               href="/about"
-              className="text-white/60 hover:text-white/80 text-sm underline transition-colors"
+              className="text-white/60 hover:text-white/80 active:text-white text-sm sm:text-base underline transition-colors min-h-[44px] flex items-center"
             >
               About
             </Link>
             <Link
               href="/"
-              className="text-white/60 hover:text-white/80 text-sm underline transition-colors"
+              className="text-white/60 hover:text-white/80 active:text-white text-sm sm:text-base underline transition-colors min-h-[44px] flex items-center"
             >
               Back to home
             </Link>
@@ -38,17 +39,17 @@ export default function TechnicalPage() {
       <Section className="max-w-4xl mx-auto">
         <div className="space-y-12">
           <div className="text-center space-y-4">
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
               Technical Solutions
             </h1>
-            <p className="text-xl text-white/70">
+            <p className="text-base sm:text-lg md:text-xl text-white/70">
               How we&apos;re building the infrastructure for underground communities
             </p>
           </div>
 
-          <div className="prose prose-invert max-w-none space-y-8 text-lg leading-relaxed">
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold">Architecture Overview</h2>
+          <div className="prose prose-invert max-w-none space-y-6 sm:space-y-8 text-base sm:text-lg leading-relaxed">
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-2xl sm:text-3xl font-bold">Architecture Overview</h2>
               <p className="text-white/80">
                 Subcult is built like the communities it serves — distributed, lightweight, and resilient.
                 It&apos;s a digital framework that connects local scenes and niche subgenres without relying on a single central platform.
@@ -61,11 +62,11 @@ export default function TechnicalPage() {
               </p>
             </div>
 
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold">Core Features</h2>
-              <div className="space-y-6 text-white/80">
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-2xl sm:text-3xl font-bold">Core Features</h2>
+              <div className="space-y-4 sm:space-y-6 text-white/80">
                 <div>
-                  <h3 className="text-2xl font-semibold mb-3">Discovery & Mapping</h3>
+                  <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">Discovery & Mapping</h3>
                   <p>
                     Subcult is a living map of the underground.
                     When you open the app, you see nearby scenes, collectives, and events — all mapped visually.
@@ -75,7 +76,7 @@ export default function TechnicalPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-semibold mb-3">Scene Management</h3>
+                  <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">Scene Management</h3>
                   <p>
                     Every collective, label, or DIY space can create its own scene inside Subcult.
                     Each scene controls its look, tone, and membership — from open communities to invite-only circles.
@@ -84,7 +85,7 @@ export default function TechnicalPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-semibold mb-3">Event & Content Sharing</h3>
+                  <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">Event & Content Sharing</h3>
                   <p>
                     Events, mixes, releases, and zines are all shared directly inside scenes.
                     You can announce a party, stream a set, or post a flyer — and your audience sees it instantly.
@@ -98,7 +99,7 @@ export default function TechnicalPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-semibold mb-3">Community Tools</h3>
+                  <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">Community Tools</h3>
                   <p>
                     Subcult is built around conversation and collaboration.
                     Scenes have chat spaces, pinned updates, and shared resources.
@@ -109,11 +110,11 @@ export default function TechnicalPage() {
               </div>
             </div>
 
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold">Technology Stack</h2>
-              <div className="space-y-6 text-white/80">
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-2xl sm:text-3xl font-bold">Technology Stack</h2>
+              <div className="space-y-4 sm:space-y-6 text-white/80">
                 <div>
-                  <h3 className="text-2xl font-semibold mb-3">Frontend</h3>
+                  <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">Frontend</h3>
                   <p>
                     The interface is designed to feel like a mix of a map, a radio, and a zine.
                     It&apos;s built with modern web tools that make it fast, smooth, and accessible on any device.
@@ -122,7 +123,7 @@ export default function TechnicalPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-semibold mb-3">Backend</h3>
+                  <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">Backend</h3>
                   <p>
                     Behind the scenes, Subcult runs a network that keeps everything fast, private, and secure.
                     Scenes store their own data safely, and content loads from nearby servers so it feels instant.
@@ -131,7 +132,7 @@ export default function TechnicalPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-semibold mb-3">Infrastructure</h3>
+                  <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">Infrastructure</h3>
                   <p>
                     Subcult runs on a mix of cloud hosting and distributed storage.
                     That means reliability and speed without a single point of failure.
@@ -142,8 +143,8 @@ export default function TechnicalPage() {
               </div>
             </div>
 
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold">Data & Privacy</h2>
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-2xl sm:text-3xl font-bold">Data & Privacy</h2>
               <p className="text-white/80">
                 Subcult values privacy as much as creativity.
                 Location data is optional and only shared when you choose to.
@@ -153,8 +154,8 @@ export default function TechnicalPage() {
               </p>
             </div>
 
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold">Financial Independence</h2>
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-2xl sm:text-3xl font-bold">Financial Independence</h2>
               <p className="text-white/80">
                 <strong>Finances are managed directly by the subcult themselves.</strong>
                 Each scene controls its own revenue, payments, and financial operations.
@@ -164,8 +165,8 @@ export default function TechnicalPage() {
               </p>
             </div>
 
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold">API & Integrations</h2>
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-2xl sm:text-3xl font-bold">API & Integrations</h2>
               <p className="text-white/80">
                 Subcult connects with the tools artists already use — from streaming platforms to calendars.
                 You can embed a mix, link to a release, or publish your Subcult events elsewhere.
@@ -173,8 +174,8 @@ export default function TechnicalPage() {
               </p>
             </div>
 
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold">Future Development</h2>
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-2xl sm:text-3xl font-bold">Future Development</h2>
               <p className="text-white/80 mb-4">
                 Subcult will evolve as the underground does.
                 Coming features include:

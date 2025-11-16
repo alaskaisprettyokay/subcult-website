@@ -34,11 +34,11 @@ export default function Home() {
   }, [])
 
 
-  // Signup form fades in after scrolling past map (starts fading at progress 0.7)
-  const signupOpacity = Math.max(0, Math.min(1, (scrollProgress - 0.7) * 3))
+  // Signup form fades in after scrolling past map (starts fading at progress 0.5 for faster appearance)
+  const signupOpacity = Math.max(0, Math.min(1, (scrollProgress - 0.5) * 2))
 
   return (
-    <main className="min-h-screen" style={{ touchAction: 'pan-y', overflowY: 'auto' }}>
+    <main className="min-h-screen bg-[#0a0a0a]" style={{ touchAction: 'pan-y', overflowY: 'auto', overflowX: 'hidden' }}>
       {/* Hero Section with Map as main landing */}
       <div className="hero">
         {/* Small logo at top center */}
@@ -48,8 +48,9 @@ export default function Home() {
             alt="Subcult"
             width={120}
             height={120}
-            className="w-auto h-auto max-w-[80px] sm:max-w-[100px] md:max-w-[120px] object-contain opacity-90"
+            className="w-auto h-auto max-w-[60px] sm:max-w-[80px] md:max-w-[100px] lg:max-w-[120px] object-contain opacity-90"
             priority
+            sizes="(max-width: 640px) 60px, (max-width: 768px) 80px, (max-width: 1024px) 100px, 120px"
           />
         </div>
         
@@ -60,8 +61,9 @@ export default function Home() {
             alt="Subcult"
             width={200}
             height={60}
-            className="w-auto h-auto max-w-[120px] sm:max-w-[160px] md:max-w-[200px] object-contain opacity-90"
+            className="w-auto h-auto max-w-[100px] sm:max-w-[140px] md:max-w-[180px] lg:max-w-[200px] object-contain opacity-90"
             priority
+            sizes="(max-width: 640px) 100px, (max-width: 768px) 140px, (max-width: 1024px) 180px, 200px"
           />
         </div>
         
@@ -71,8 +73,8 @@ export default function Home() {
         </div>
       </div>
       
-      {/* Spacer to allow scrolling */}
-      <div className="h-screen" />
+      {/* Spacer to allow scrolling - reduced for better UX */}
+      <div className="h-[20vh] sm:h-[30vh]" />
 
       {/* Signup Section - appears after scrolling */}
       <Section className="signup-section">
@@ -93,16 +95,16 @@ export default function Home() {
             <EmailForm />
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center pt-4">
             <Link
               href="/about"
-              className="inline-block text-white/60 hover:text-white/80 text-sm underline transition-colors"
+              className="inline-block text-white/60 hover:text-white/80 active:text-white text-sm sm:text-base underline transition-colors min-h-[44px] flex items-center"
             >
               What is Subcult?
             </Link>
             <Link
               href="/technical"
-              className="inline-block text-white/60 hover:text-white/80 text-sm underline transition-colors"
+              className="inline-block text-white/60 hover:text-white/80 active:text-white text-sm sm:text-base underline transition-colors min-h-[44px] flex items-center"
             >
               Technical Solutions
             </Link>
@@ -112,11 +114,11 @@ export default function Home() {
 
       {/* Explainer Section */}
       <Section id="explainer" className="border-t border-white/10">
-        <div className="max-w-3xl mx-auto text-center space-y-6">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+        <div className="max-w-3xl mx-auto text-center space-y-4 sm:space-y-6 px-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
             Find and support the local underground music communities
           </h2>
-          <p className="text-lg text-white/70 leading-relaxed">
+          <p className="text-base sm:text-lg text-white/70 leading-relaxed">
             Subcult connects artists, venues, and fans in underground music communities
             around the world. We&apos;re building tools for scenes to thrive independently,
             creating sustainable systems where local culture can flourish.
@@ -128,17 +130,17 @@ export default function Home() {
       <footer className="footer">
         <div className="footer__content">
           <div className="footer__links">
-            <a href="#" className="footer__link">
+            <a href="#" className="footer__link min-h-[44px] flex items-center">
               Terms
             </a>
-            <a href="#" className="footer__link">
+            <a href="#" className="footer__link min-h-[44px] flex items-center">
               Privacy
             </a>
-            <a href="#" className="footer__link">
+            <a href="#" className="footer__link min-h-[44px] flex items-center">
               Contact
             </a>
           </div>
-          <div>© {new Date().getFullYear()} Subcult</div>
+          <div className="text-xs sm:text-sm">© {new Date().getFullYear()} Subcult</div>
         </div>
       </footer>
     </main>

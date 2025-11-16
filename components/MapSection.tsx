@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import Map, { Marker, MapRef } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { cities, City } from '@/lib/cities'
@@ -15,13 +15,14 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
   const mapRef = useRef<MapRef>(null)
   const [interactive, setInteractive] = useState(false)
   const [hoveredCity, setHoveredCity] = useState<string | null>(null)
-  const touchStartY = useRef<number | null>(null)
+  const overlayRef = useRef<HTMLDivElement>(null)
+  const isScrollingRef = useRef(false)
 
   const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN
 
   if (!mapboxToken) {
     return (
-      <section className="py-20 px-4">
+      <section className="py-12 sm:py-20 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <p className="text-white/50">Mapbox token not configured</p>
         </div>
@@ -34,50 +35,77 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
   }
 
   const enableInteraction = () => {
-    if (!interactive && mapRef.current) {
+    if (!interactive && mapRef.current && !isScrollingRef.current) {
       setInteractive(true)
       const map = mapRef.current.getMap()
       // Keep scrollZoom disabled to allow page scrolling
       map.scrollZoom.disable()
-      // Enable drag pan but make it less aggressive on mobile
+      // Enable drag pan
       map.dragPan.enable()
       map.boxZoom.enable()
       map.doubleClickZoom.enable()
-      // Enable touch interactions but allow vertical scrolling
+      // Enable touch interactions
       map.touchZoomRotate.enable()
       map.touchPitch.enable()
-      
-      // Get the map container and ensure it allows vertical scrolling
-      const container = map.getContainer()
-      if (container) {
-        container.style.touchAction = 'pan-x pan-y pinch-zoom'
-      }
     }
   }
 
-  // Handle touch events to allow vertical scrolling
-  const handleTouchStart = (e: React.TouchEvent) => {
-    if (e.touches.length === 1) {
-      touchStartY.current = e.touches[0].clientY
-      // Small delay to detect if it's a scroll or tap
-      setTimeout(() => {
-        if (touchStartY.current !== null) {
-          enableInteraction()
+  // Detect vertical scrolling to prevent map interaction
+  useEffect(() => {
+    if (!fullscreen || !overlayRef.current) return
+
+    let touchStartY = 0
+    let touchStartTime = 0
+    let scrollTimeout: NodeJS.Timeout
+
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length === 1) {
+        touchStartY = e.touches[0].clientY
+        touchStartTime = Date.now()
+        isScrollingRef.current = false
+      }
+    }
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length === 1 && touchStartY !== 0) {
+        const deltaY = Math.abs(e.touches[0].clientY - touchStartY)
+        const deltaTime = Date.now() - touchStartTime
+        
+        // If significant vertical movement in short time, it's a scroll
+        if (deltaY > 5 && deltaTime < 200) {
+          isScrollingRef.current = true
+          clearTimeout(scrollTimeout)
+          scrollTimeout = setTimeout(() => {
+            isScrollingRef.current = false
+          }, 300)
         }
-      }, 150)
-    }
-  }
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    // If user is scrolling vertically, don't enable interaction
-    if (touchStartY.current !== null && e.touches.length === 1) {
-      const deltaY = Math.abs(e.touches[0].clientY - touchStartY.current)
-      if (deltaY > 10) {
-        // User is scrolling, cancel interaction enable
-        touchStartY.current = null
       }
     }
-  }
+
+    const handleTouchEnd = () => {
+      // If it wasn't a scroll and was a quick tap, enable interaction
+      if (!isScrollingRef.current && Date.now() - touchStartTime < 300) {
+        setTimeout(() => {
+          if (!isScrollingRef.current) {
+            enableInteraction()
+          }
+        }, 50)
+      }
+      touchStartY = 0
+    }
+
+    const overlay = overlayRef.current
+    overlay.addEventListener('touchstart', handleTouchStart, { passive: true })
+    overlay.addEventListener('touchmove', handleTouchMove, { passive: true })
+    overlay.addEventListener('touchend', handleTouchEnd, { passive: true })
+
+    return () => {
+      overlay.removeEventListener('touchstart', handleTouchStart)
+      overlay.removeEventListener('touchmove', handleTouchMove)
+      overlay.removeEventListener('touchend', handleTouchEnd)
+      clearTimeout(scrollTimeout)
+    }
+  }, [fullscreen, interactive])
 
   const mapContent = (
     <div 
@@ -85,19 +113,22 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
       style={{ 
         width: '100%', 
         height: '100%',
-        touchAction: 'pan-y pinch-zoom' // Allow vertical scrolling and pinch zoom
+        touchAction: 'pan-y' // Only allow vertical scrolling by default
       }}
     >
       <div
+        ref={overlayRef}
         className={clsx(
           'absolute inset-0 z-10 flex items-center justify-center',
           'bg-black/40 backdrop-blur-sm transition-opacity duration-300',
           interactive && 'opacity-0 pointer-events-none'
         )}
         onClick={enableInteraction}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        style={{ touchAction: 'pan-y' }} // Allow vertical scrolling through overlay
+        style={{ 
+          touchAction: 'pan-y', // Allow vertical scrolling through overlay
+          WebkitTouchCallout: 'none',
+          WebkitUserSelect: 'none'
+        }}
       >
         <div className="text-center px-4 py-6 sm:p-8">
           <p className="text-white text-base sm:text-lg mb-2">explore local scenes</p>
@@ -117,26 +148,29 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
           width: '100%', 
           height: '100%', 
           minHeight: fullscreen ? '100dvh' : '600px',
-          touchAction: interactive ? 'pan-x pan-y pinch-zoom' : 'pan-y pinch-zoom' // Always allow vertical scrolling
+          touchAction: interactive ? 'pan-x pan-y pinch-zoom' : 'pan-y' // Only vertical scroll when not interactive
         }}
         mapStyle="mapbox://styles/mapbox/dark-v11"
         onLoad={() => {
           if (mapRef.current) {
             const map = mapRef.current.getMap()
+            // Disable all interactions initially to allow page scrolling
             map.scrollZoom.disable()
             map.dragPan.disable()
             map.boxZoom.disable()
             map.doubleClickZoom.disable()
             map.touchZoomRotate.disable()
+            map.touchPitch.disable()
             
             // Ensure the map container allows vertical scrolling
             const container = map.getContainer()
             if (container) {
-              container.style.touchAction = 'pan-y pinch-zoom'
+              container.style.touchAction = 'pan-y'
+              container.style.pointerEvents = 'auto'
               // Also set on canvas
               const canvas = container.querySelector('.mapboxgl-canvas')
               if (canvas) {
-                ;(canvas as HTMLElement).style.touchAction = 'pan-y pinch-zoom'
+                ;(canvas as HTMLElement).style.touchAction = 'pan-y'
               }
             }
             
@@ -163,8 +197,9 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
             latitude={city.coordinates[1]}
             anchor="center"
           >
-            <div
-              className="relative cursor-pointer group"
+            <button
+              type="button"
+              className="relative min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer group touch-manipulation"
               onClick={() => handleMarkerClick(city)}
               onMouseEnter={() => setHoveredCity(city.name)}
               onMouseLeave={() => setHoveredCity(null)}
@@ -177,7 +212,7 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
                   {city.name}
                 </div>
               )}
-            </div>
+            </button>
           </Marker>
         ))}
       </Map>
