@@ -51,23 +51,13 @@ export const cities: City[] = [
   { name: 'Global', coordinates: [0, 0], stationName: 'Datafruits', genre: 'Chiptune/electronic', isStation: true },
   { name: 'San Francisco', coordinates: [-122.4194, 37.7749], stationName: 'SomaFM', genre: 'Multiple channels (Groove Salad, etc.)', isStation: true },
   
-  // UNITED STATES - ALASKA
-  { name: 'Anchorage, Alaska', coordinates: [-149.9003, 61.2181], stationName: 'KNBA 90.3', genre: 'Variety/Native programming', isStation: true },
-  
   // UNITED STATES - CALIFORNIA
-  { name: 'Santa Rosa, California', coordinates: [-122.7141, 38.4404], stationName: '95.9 The Krush (KRSH)', genre: 'Singer-Songwriter/Adult Alternative', isStation: true },
   { name: 'Los Angeles', coordinates: [-118.2437, 34.0522], stationName: 'The So Cal Sound (KCSN)', genre: 'Rock/Smart Rock', isStation: true },
   { name: 'Fremont, California', coordinates: [-121.9886, 37.5483], stationName: 'La Tricolor', genre: 'Bollywood/South Asian', isStation: true },
   
   // UNITED STATES - NEW YORK
   { name: 'New York', coordinates: [-74.0060, 40.7128], stationName: 'WNYC', genre: 'Public Radio/NPR', isStation: true },
   { name: 'New York', coordinates: [-74.0060, 40.7128], stationName: 'TUDN', genre: 'Sports (Spanish)', isStation: true },
-  
-  // UNITED STATES - ILLINOIS
-  { name: 'Chicago, Illinois', coordinates: [-87.6298, 41.8781], stationName: 'WHPK 88.5', genre: 'College/Freeform', isStation: true },
-  
-  // UNITED STATES - ARKANSAS
-  { name: 'Mountain View, Arkansas', coordinates: [-92.1176, 35.8684], stationName: 'KWMV 88.5', genre: 'Bluegrass/Folk/Country', isStation: true },
   
   // UNITED STATES - KANSAS
   { name: 'Garden City, Kansas', coordinates: [-100.8728, 37.9717], stationName: 'High Plains Public Radio', genre: 'Public/NPR', isStation: true },
@@ -102,8 +92,6 @@ export const cities: City[] = [
   
   // CANADA - QUEBEC
   { name: 'Rouyn-Noranda, Quebec', coordinates: [-79.0164, 48.2342], stationName: 'Viva', genre: 'Adult Contemporary/Rock', isStation: true },
-  { name: 'Montreal, Quebec', coordinates: [-73.5673, 45.5017], stationName: '107.3 Rouge', genre: 'Pop (French)', isStation: true },
-  { name: 'Montreal, Quebec', coordinates: [-73.5673, 45.5017], stationName: 'Radio Circulation 730AM', genre: 'Traffic/Sports', isStation: true },
   { name: 'Val-d\'Or, Quebec', coordinates: [-77.7828, 48.1001], stationName: 'O Abitibi', genre: 'Rock/Top 40', isStation: true },
   
   // CANADA - ALBERTA
@@ -113,8 +101,7 @@ export const cities: City[] = [
   { name: 'Edmonton, Alberta', coordinates: [-113.4909, 53.5461], stationName: 'ICI Radio-Canada Première', genre: 'French Public Radio', isStation: true },
   
   // CANADA - BRITISH COLUMBIA
-  { name: 'Vancouver, British Columbia', coordinates: [-123.1216, 49.2827], stationName: 'Fairchild Radio FM 96.1', genre: 'Chinese/Multicultural', isStation: true },
-  { name: 'Vancouver, British Columbia', coordinates: [-123.1216, 49.2827], stationName: 'Rock 101', genre: 'Classic Rock', isStation: true },
+  { name: 'Vancouver, British Columbia', coordinates: [-123.1216, 49.2827], stationName: 'Fairchild Radio', genre: 'Chinese/Multicultural', isStation: true },
   
   // CANADA - NOVA SCOTIA
   { name: 'Halifax, Nova Scotia', coordinates: [-63.5752, 44.6488], stationName: 'CBC Radio One', genre: 'Public Radio', isStation: true },
@@ -131,13 +118,12 @@ export const cities: City[] = [
   { name: 'Thunder Bay, Ontario', coordinates: [-89.2477, 48.3809], stationName: 'CBC Music', genre: 'Canadian Music', isStation: true },
   
   // EUROPE - SPAIN
-  { name: 'Madrid, Spain', coordinates: [-3.7038, 40.4168], stationName: 'RNE Radio 3', genre: 'Eclectic/Rock/Folk/Punk/Soul', isStation: true },
+  { name: 'Madrid, Spain', coordinates: [-3.7038, 40.4168], stationName: 'RNE Radio', genre: 'Eclectic/Rock/Folk/Punk/Soul', isStation: true },
   
   // EUROPE - DENMARK
   { name: 'Randers, Denmark', coordinates: [10.0364, 56.4607], stationName: 'World Music Radio (WMR)', genre: 'World Music/Tropical', isStation: true },
   
   // EUROPE - NETHERLANDS
-  { name: 'Haarlem, Netherlands', coordinates: [4.6462, 52.3792], stationName: 'Haarlem 105', genre: 'Adult Contemporary', isStation: true },
   { name: 'Hilversum, Netherlands', coordinates: [5.1767, 52.2233], stationName: 'Concertzender Barok', genre: 'Baroque/Classical', isStation: true },
   
   // EUROPE - GERMANY
@@ -151,7 +137,7 @@ export const cities: City[] = [
   { name: 'São Paulo', coordinates: [-46.6333, -23.5505], stationName: 'Rádio Nativa FM', genre: 'Sertanejo (Brazilian Country)', isStation: true },
   
   // AUSTRALIA
-  { name: 'Melbourne, Australia', coordinates: [144.9631, -37.8136], stationName: 'Triple R (3RRR)', genre: 'Community/Independent', isStation: true },
+  { name: 'Melbourne, Australia', coordinates: [144.9631, -37.8136], stationName: 'Triple R', genre: 'Community/Independent', isStation: true },
   
   // SPECIALTY/ONLINE STATIONS
   { name: 'Douglas, Isle of Man', coordinates: [-4.4773, 54.1523], stationName: '1Mix Radio', genre: 'Trance', isStation: true },
