@@ -16,6 +16,7 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
   const [interactive, setInteractive] = useState(false)
   const [hoveredCity, setHoveredCity] = useState<string | null>(null)
   const [selectedCityId, setSelectedCityId] = useState<string | null>(null)
+  const [lastClickedCityId, setLastClickedCityId] = useState<string | null>(null)
   const overlayRef = useRef<HTMLDivElement>(null)
   const isScrollingRef = useRef(false)
 
@@ -35,10 +36,29 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
     }
   }, [])
 
+  const centerMapOnCity = useCallback((city: City) => {
+    if (mapRef.current) {
+      const map = mapRef.current.getMap()
+      map.flyTo({
+        center: [city.coordinates[0], city.coordinates[1]],
+        zoom: Math.max(map.getZoom(), 6),
+        duration: 1000,
+      })
+    }
+  }, [])
+
   const handleMarkerClick = (city: City, uniqueId: string) => {
-    setSelectedCityId(uniqueId)
-    // Auto-scroll to signup on click
-    scrollToSignup()
+    // If clicking the same city again, scroll to signup
+    if (lastClickedCityId === uniqueId) {
+      setSelectedCityId(null)
+      setLastClickedCityId(null)
+      scrollToSignup()
+    } else {
+      // First click: center map on city
+      setSelectedCityId(uniqueId)
+      setLastClickedCityId(uniqueId)
+      centerMapOnCity(city)
+    }
   }
 
   const enableInteraction = useCallback(() => {
@@ -65,6 +85,7 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
         // Don't close if clicking on the tooltip or marker button
         if (!target.closest('.marker-tooltip') && !target.closest('button[aria-label*="marker"]')) {
           setSelectedCityId(null)
+          setLastClickedCityId(null)
         }
       }
     }
@@ -80,6 +101,16 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
       }
     }
   }, [selectedCityId])
+  
+  // Reset last clicked city after a delay
+  useEffect(() => {
+    if (lastClickedCityId) {
+      const timeout = setTimeout(() => {
+        setLastClickedCityId(null)
+      }, 2000) // Reset after 2 seconds
+      return () => clearTimeout(timeout)
+    }
+  }, [lastClickedCityId])
 
   // Detect vertical scrolling to prevent map interaction
   useEffect(() => {
@@ -261,9 +292,9 @@ export default function MapSection({ fullscreen = false }: MapSectionProps) {
                 aria-label={`${displayName} marker`}
               >
                 <div className="absolute inset-0 animate-pulse-slow bg-white/20 rounded-full blur-md" />
-                <div className="relative w-3 h-3 sm:w-4 sm:h-4 bg-white rounded-full border-2 border-white/30 shadow-lg" />
+                <div className="relative w-3 h-3 sm:w-4 sm:h-4 bg-white rounded-full border-2 border-white/30 shadow-lg z-10" />
                 {(isHovered || isSelected) && (
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-50 marker-tooltip">
+                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 z-[100] marker-tooltip pointer-events-none">
                     <div className="bg-black/95 text-white text-xs sm:text-sm rounded-lg shadow-xl border border-white/10 min-w-[140px] max-w-[220px] px-3 py-2">
                       {city.stationName ? (
                         <>
