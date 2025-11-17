@@ -225,6 +225,39 @@ a:active {
     @apply pt-8 flex justify-center;
   }
 
+  /* Demo Button */
+  .demo-button {
+    @apply flex flex-col items-center justify-center gap-3;
+    @apply mt-8 px-6 py-4;
+    @apply text-white/70 hover:text-white active:text-white;
+    @apply transition-all duration-300;
+    @apply focus:outline-none focus:ring-2 focus:ring-white/20 focus:ring-offset-2 focus:ring-offset-[#0a0a0a];
+    @apply rounded-lg;
+    /* Touch target minimum */
+    min-height: 44px;
+  }
+
+  .demo-button:hover {
+    @apply transform scale-105;
+  }
+
+  .demo-button:active {
+    @apply transform scale-95;
+  }
+
+  .demo-button svg {
+    @apply w-12 h-12 sm:w-16 sm:h-16;
+    @apply text-white/60 group-hover:text-white;
+  }
+
+  .demo-button:hover svg {
+    @apply text-white;
+  }
+
+  .demo-button__text {
+    @apply text-sm sm:text-base font-medium;
+  }
+
   /* Footer */
   .footer {
     @apply border-t border-white/10 py-8 px-4;

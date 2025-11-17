@@ -1,45 +1,23 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import EmailForm from '@/components/EmailForm'
 import MapSection from '@/components/MapSection'
 import Section from '@/components/Section'
-import clsx from 'clsx'
+import GlobeIcon from '@/components/GlobeIcon'
 
 export default function Home() {
-  const [scrollProgress, setScrollProgress] = useState(0)
+  const mapSectionRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY
-      const windowHeight = window.innerHeight
-      
-      // Calculate progress: 0 at top, 1 after scrolling one viewport height
-      const progress = Math.min(1, scrollY / windowHeight)
-      setScrollProgress(progress)
-    }
-
-    // Initial call to set scroll progress
-    handleScroll()
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    window.addEventListener('resize', handleScroll, { passive: true })
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('resize', handleScroll)
-    }
-  }, [])
-
-
-  // Signup form fades in after scrolling past map (starts fading at progress 0.5 for faster appearance)
-  const signupOpacity = Math.max(0, Math.min(1, (scrollProgress - 0.5) * 2))
+  const scrollToDemo = () => {
+    mapSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
 
   return (
     <main className="min-h-screen bg-[#0a0a0a]" style={{ touchAction: 'pan-y', overflowY: 'auto', overflowX: 'hidden' }}>
-      {/* Hero Section with Map as main landing */}
+      {/* Hero Section with Signup Form */}
       <div className="hero">
         {/* Small logo at top center */}
         <div className="hero__logo hero__logo--center">
@@ -67,50 +45,54 @@ export default function Home() {
           />
         </div>
         
-        {/* Map - main landing element, fully visible */}
-        <div className="absolute inset-0 z-10">
-          <MapSection fullscreen />
-        </div>
+        {/* Signup Section - Hero Content */}
+        <Section id="signup" className="signup-section">
+          <div className="signup-section__content">
+            <div className="signup-section__header">
+              <h1 className="signup-section__title">
+                Subcult
+              </h1>
+              <p className="signup-section__subtitle">
+                Discover and support underground music communities around the world.
+              </p>
+            </div>
+
+            <div className="signup-section__form">
+              <EmailForm />
+            </div>
+
+            {/* Demo Button */}
+            <button
+              onClick={scrollToDemo}
+              className="demo-button"
+              aria-label="View demo map"
+            >
+              <GlobeIcon />
+              <span className="demo-button__text">Explore the map</span>
+            </button>
+
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center pt-4">
+              <Link
+                href="/about"
+                className="inline-block text-white/60 hover:text-white/80 active:text-white text-sm sm:text-base underline transition-colors min-h-[44px] flex items-center"
+              >
+                What is Subcult?
+              </Link>
+              <Link
+                href="/technical"
+                className="inline-block text-white/60 hover:text-white/80 active:text-white text-sm sm:text-base underline transition-colors min-h-[44px] flex items-center"
+              >
+                Technical Solutions
+              </Link>
+            </div>
+          </div>
+        </Section>
       </div>
-      
-      {/* Spacer to allow scrolling - reduced for better UX */}
-      <div className="h-[20vh] sm:h-[30vh]" />
 
-      {/* Signup Section - appears after scrolling */}
-      <Section id="signup" className="signup-section">
-        <div 
-          className="signup-section__content"
-          style={{ opacity: signupOpacity }}
-        >
-          <div className="signup-section__header">
-            <h1 className="signup-section__title">
-              Subcult
-            </h1>
-            <p className="signup-section__subtitle">
-              Discover and support underground music communities around the world.
-            </p>
-          </div>
-
-          <div className="signup-section__form">
-            <EmailForm />
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center pt-4">
-            <Link
-              href="/about"
-              className="inline-block text-white/60 hover:text-white/80 active:text-white text-sm sm:text-base underline transition-colors min-h-[44px] flex items-center"
-            >
-              What is Subcult?
-            </Link>
-            <Link
-              href="/technical"
-              className="inline-block text-white/60 hover:text-white/80 active:text-white text-sm sm:text-base underline transition-colors min-h-[44px] flex items-center"
-            >
-              Technical Solutions
-            </Link>
-          </div>
-        </div>
-      </Section>
+      {/* Demo Section - Map */}
+      <div ref={mapSectionRef} id="demo">
+        <MapSection fullscreen />
+      </div>
 
       {/* Explainer Section */}
       <Section id="explainer" className="border-t border-white/10">

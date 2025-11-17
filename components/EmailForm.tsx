@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { subscribe } from '@/app/actions/subscribe'
 import { toast } from 'sonner'
 import clsx from 'clsx'
@@ -13,6 +13,17 @@ export default function EmailForm() {
   const [city, setCity] = useState('')
   const [referral, setReferral] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showOptional, setShowOptional] = useState(false)
+  const emailInputRef = useRef<HTMLInputElement>(null)
+
+  // Auto-focus email input on mount for minimal friction
+  useEffect(() => {
+    // Small delay to ensure smooth rendering
+    const timer = setTimeout(() => {
+      emailInputRef.current?.focus()
+    }, 100)
+    return () => clearTimeout(timer)
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -81,6 +92,7 @@ export default function EmailForm() {
       <form onSubmit={handleSubmit} className="form-group">
         <div className="form-row">
           <input
+            ref={emailInputRef}
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -88,6 +100,8 @@ export default function EmailForm() {
             required
             disabled={isSubmitting}
             className="form-input flex-1"
+            autoComplete="email"
+            autoFocus
           />
           <button
             type="submit"
@@ -98,23 +112,37 @@ export default function EmailForm() {
           </button>
         </div>
         
-        <input
-          type="text"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          placeholder="City (optional)"
-          disabled={isSubmitting}
-          className="form-input form-input--small w-full"
-        />
+        {/* Optional fields - collapsed by default to reduce friction */}
+        {showOptional ? (
+          <div className="space-y-3 transition-all duration-200 ease-in-out">
+            <input
+              type="text"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              placeholder="City (optional)"
+              disabled={isSubmitting}
+              className="form-input form-input--small w-full"
+              autoComplete="address-level2"
+            />
 
-        <input
-          type="text"
-          value={referral}
-          onChange={(e) => setReferral(e.target.value)}
-          placeholder="Referral code (optional)"
-          disabled={isSubmitting}
-          className="form-input form-input--small w-full"
-        />
+            <input
+              type="text"
+              value={referral}
+              onChange={(e) => setReferral(e.target.value)}
+              placeholder="Referral code (optional)"
+              disabled={isSubmitting}
+              className="form-input form-input--small w-full"
+            />
+          </div>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setShowOptional(true)}
+            className="text-white/50 hover:text-white/70 text-sm underline transition-colors min-h-[44px] flex items-center justify-center"
+          >
+            Add city or referral code (optional)
+          </button>
+        )}
       </form>
     </div>
   )
