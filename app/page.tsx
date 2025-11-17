@@ -62,14 +62,16 @@ export default function Home() {
             </div>
 
             {/* Demo Button */}
-            <button
-              onClick={scrollToDemo}
-              className="demo-button"
-              aria-label="View demo map"
-            >
-              <GlobeIcon />
-              <span className="demo-button__text">Explore the map</span>
-            </button>
+            <div className="flex justify-center mt-8">
+              <button
+                onClick={scrollToDemo}
+                className="demo-button"
+                aria-label="Explore subcults"
+              >
+                <GlobeIcon />
+                <span className="demo-button__text">Explore subcults</span>
+              </button>
+            </div>
 
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center pt-4">
               <Link
