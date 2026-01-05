@@ -146,6 +146,7 @@ export default function SubcultPage() {
           <Link
             href="/"
             className="inline-block px-8 py-4 rounded-lg font-medium bg-white text-black hover:bg-white/90 active:bg-white/80 transition-all min-h-[44px]"
+            style={{ backgroundColor: 'white', color: 'black' }}
           >
             Join the waitlist
           </Link>
