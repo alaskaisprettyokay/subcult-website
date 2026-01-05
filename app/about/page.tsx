@@ -20,122 +20,117 @@ export default function AboutPage() {
           </Link>
           <div className="flex items-center gap-3 sm:gap-4">
             <Link
+              href="/subcult"
+              className="text-white/60 hover:text-white/80 active:text-white text-sm sm:text-base underline transition-colors min-h-[44px] flex items-center"
+            >
+              What is a Subcult?
+            </Link>
+            <Link
               href="/technical"
               className="text-white/60 hover:text-white/80 active:text-white text-sm sm:text-base underline transition-colors min-h-[44px] flex items-center"
             >
-              Technical
+              How it Works
             </Link>
             <Link
               href="/"
               className="text-white/60 hover:text-white/80 active:text-white text-sm sm:text-base underline transition-colors min-h-[44px] flex items-center"
             >
-              Back to home
+              Home
             </Link>
           </div>
         </div>
       </header>
 
-      {/* Manifesto Section */}
-      <Section className="max-w-4xl mx-auto">
-        <div className="space-y-12">
-          <div className="text-center space-y-4">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-              What is Subcult?
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl text-white/70">
-              A manifesto for underground music communities
+      {/* Hero */}
+      <Section className="max-w-3xl mx-auto">
+        <div className="text-center space-y-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+            What is SubCult?
+          </h1>
+          <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
+            Infrastructure for music communities.
+          </p>
+        </div>
+      </Section>
+
+      {/* The Core Idea */}
+      <Section className="max-w-3xl mx-auto border-t border-white/10">
+        <div className="space-y-6 text-white/80 text-base sm:text-lg leading-relaxed">
+          <p>
+            Think about how you actually discover music that sticks. Not the background noise, but the songs that become part of your life. Almost always, there&apos;s a person involved. A friend who knew you&apos;d love it. A DJ whose taste you trust. A radio host who&apos;s been doing this for years.
+          </p>
+          <p>
+            That relationship—between the people who find music and the people who listen—is where culture actually happens. It&apos;s how sounds travel, how scenes form, how artists find their people. And right now, there&apos;s no good infrastructure for it online.
+          </p>
+          <p>
+            SubCult is an attempt to build that infrastructure.
+          </p>
+        </div>
+      </Section>
+
+      {/* What We Do */}
+      <Section className="max-w-3xl mx-auto border-t border-white/10">
+        <div className="space-y-6">
+          <h2 className="text-2xl sm:text-3xl font-bold">What we&apos;re building</h2>
+          <div className="text-white/80 space-y-6 text-base sm:text-lg leading-relaxed">
+            <p>
+              We let tastemakers create their own spaces—communities built around their taste and the artists they champion. These aren&apos;t playlists. They&apos;re living ecosystems where artists and listeners actually connect.
+            </p>
+            <p>
+              When a listener supports an artist through SubCult, the money goes directly to them. Instantly. Globally. No waiting, no middlemen taking 30%. We use stablecoin payments, which means an artist in Lagos can get paid by a fan in Berlin without either of them needing a US bank account.
+            </p>
+            <p>
+              And crucially—the people running these communities get paid too. The work of finding, championing, and contextualizing music has always been valuable. We&apos;re just building the infrastructure that finally recognizes it.
             </p>
           </div>
+        </div>
+      </Section>
 
-          <div className="prose prose-invert max-w-none space-y-6 sm:space-y-8 text-base sm:text-lg leading-relaxed">
-            <div className="space-y-4 sm:space-y-6">
-              <h2 className="text-2xl sm:text-3xl font-bold">Our Vision</h2>
-              <p className="text-white/80">
-                To connect the underground and local music communities. Create a home for artists, venues, scenes, fans,
-                and curators to connect and share with each other.
-                We&apos;re building a map of the underground: a network of trust, discovery, and creative autonomy.
-              </p>
-            </div>
-
-            <div className="space-y-4 sm:space-y-6">
-              <h2 className="text-2xl sm:text-3xl font-bold">The Problem</h2>
-              <p className="text-white/80">
-                Underground music scenes are scattered.
-                Algorithms bury them, platforms flatten them, and cities push them out.
-                Most artists and crews operate in isolation — their reach limited, their work undervalued, their community invisible online.
-                The spaces that once held these scenes together — the flyers, zines, forums, and radio — have been replaced by systems that monetize attention instead of meaning.
-                <br /><br />
-                The result: culture gets lost in the noise.
-              </p>
-            </div>
-
-            <div className="space-y-4 sm:space-y-6">
-              <h2 className="text-2xl sm:text-3xl font-bold">Our Solution</h2>
-              <p className="text-white/80">
-                Subcult rebuilds the connective tissue of the underground.
-                It&apos;s not a social network — it&apos;s a discovery layer for local scenes.
-                Artists, collectives, and curators can share events, releases, and ideas in ways that stay true to their identity.
-                Each scene defines its own space, visual language, and membership.
-                <br /><br />
-                Instead of chasing followers, Subcult celebrates presence:
-                Who&apos;s around you.
-                Who&apos;s playing.
-                Who&apos;s building something real.
-                <br /><br />
-                It&apos;s a tool for connection — and a signal for where culture is actually happening.
-              </p>
-            </div>
-
-            <div className="space-y-4 sm:space-y-6">
-              <h2 className="text-2xl sm:text-3xl font-bold">The Manifesto</h2>
-              <div className="space-y-4 text-white/80">
-                <ol className="list-decimal list-inside space-y-4 ml-4">
-                  <li>
-                    <strong>We believe in the underground.</strong>
-                    <br />
-                    Not as nostalgia — but as a living network of resistance, creativity, and self-expression.
-                  </li>
-                  <li>
-                    <strong>We believe culture belongs to those who create it.</strong>
-                    <br />
-                    Platforms don&apos;t make communities — people do.
-                  </li>
-                  <li>
-                    <strong>We believe in connection without compromise.</strong>
-                    <br />
-                    Every scene is its own world. Subcult helps them find each other, not merge into one.
-                  </li>
-                  <li>
-                    <strong>We believe discovery should feel human.</strong>
-                    <br />
-                    No algorithms, no feeds — just proximity, trust, and curiosity.
-                  </li>
-                  <li>
-                    <strong>We believe in sound as a signal.</strong>
-                    <br />
-                    Music isn&apos;t content — it&apos;s how we recognize one another across borders.
-                  </li>
-                </ol>
-              </div>
-            </div>
-
-            <div className="space-y-4 sm:space-y-6">
-              <h2 className="text-2xl sm:text-3xl font-bold">Join Us</h2>
-              <p className="text-white/80">
-              Subcult is opening the door to the next generation of underground culture.
-              Join the waitlist, become a curator, or help map your local scene.
-              This is where the underground connects.
-              </p>
-              <div className="pt-4">
-                <Link
-                  href="/"
-                  className="inline-block px-6 py-3 rounded-lg font-medium bg-white text-black hover:bg-white/90 active:bg-white/80 transition-all min-h-[44px] flex items-center justify-center"
-                >
-                  Join the waitlist
-                </Link>
-              </div>
-            </div>
+      {/* Who It's For */}
+      <Section className="max-w-3xl mx-auto border-t border-white/10">
+        <div className="space-y-6">
+          <h2 className="text-2xl sm:text-3xl font-bold">Who it&apos;s for</h2>
+          <div className="text-white/80 space-y-6 text-base sm:text-lg leading-relaxed">
+            <p>
+              If you&apos;re a <strong className="text-white">DJ, radio host, label head, blogger, or promoter</strong>—you&apos;ve probably felt the frustration of doing work that matters but having no real way to sustain it. SubCult gives you the tools to build around your taste and actually capture value from it.
+            </p>
+            <p>
+              If you&apos;re an <strong className="text-white">artist</strong>, you get direct connection to people who care about your work and listeners who want to support you. No more shouting into the void of social media algorithms.
+            </p>
+            <p>
+              If you&apos;re a <strong className="text-white">listener</strong>, you get discovery that actually means something. Music chosen by people, not engagement metrics. Communities to be part of, not just content to consume.
+            </p>
           </div>
+        </div>
+      </Section>
+
+      {/* Why Now */}
+      <Section className="max-w-3xl mx-auto border-t border-white/10">
+        <div className="space-y-6">
+          <h2 className="text-2xl sm:text-3xl font-bold">Why this matters now</h2>
+          <div className="text-white/80 space-y-6 text-base sm:text-lg leading-relaxed">
+            <p>
+              The current model isn&apos;t working. Artists can&apos;t make a living from streams. The people who find and champion music can&apos;t get paid at all. Listeners are drowning in infinite content but starving for actual connection.
+            </p>
+            <p>
+              We think there&apos;s a better way. One where the people who make music and the people who champion it can actually build something sustainable. Where communities form around shared taste instead of algorithmic happenstance.
+            </p>
+            <p>
+              We&apos;re early. We&apos;re still figuring things out. But we&apos;re building with the people who will use it, and we think that matters.
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      {/* CTA */}
+      <Section className="max-w-3xl mx-auto border-t border-white/10">
+        <div className="text-center space-y-6">
+          <Link
+            href="/"
+            className="inline-block px-8 py-4 rounded-lg font-medium bg-white text-black hover:bg-white/90 active:bg-white/80 transition-all min-h-[44px]"
+          >
+            Join the waitlist
+          </Link>
         </div>
       </Section>
 
@@ -159,4 +154,3 @@ export default function AboutPage() {
     </main>
   )
 }
-

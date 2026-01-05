@@ -23,175 +23,138 @@ export default function TechnicalPage() {
               href="/about"
               className="text-white/60 hover:text-white/80 active:text-white text-sm sm:text-base underline transition-colors min-h-[44px] flex items-center"
             >
-              About
+              What is SubCult?
+            </Link>
+            <Link
+              href="/subcult"
+              className="text-white/60 hover:text-white/80 active:text-white text-sm sm:text-base underline transition-colors min-h-[44px] flex items-center"
+            >
+              What is a Subcult?
             </Link>
             <Link
               href="/"
               className="text-white/60 hover:text-white/80 active:text-white text-sm sm:text-base underline transition-colors min-h-[44px] flex items-center"
             >
-              Back to home
+              Home
             </Link>
           </div>
         </div>
       </header>
 
-      {/* Technical Solutions Section */}
-      <Section className="max-w-4xl mx-auto">
-        <div className="space-y-12">
-          <div className="text-center space-y-4">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-              Technical Solutions
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl text-white/70">
-              How we&apos;re building the infrastructure for underground communities
+      {/* Hero */}
+      <Section className="max-w-3xl mx-auto">
+        <div className="text-center space-y-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+            How it Works
+          </h1>
+          <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
+            A working product. Here&apos;s what you can do with it.
+          </p>
+        </div>
+      </Section>
+
+      {/* The Core Loop */}
+      <Section className="max-w-3xl mx-auto border-t border-white/10">
+        <div className="space-y-6">
+          <h2 className="text-2xl sm:text-3xl font-bold">The core loop</h2>
+          <div className="text-white/80 space-y-6 text-base sm:text-lg leading-relaxed">
+            <p>
+              Someone creates a subcult around a sound, a scene, or a geography. Artists apply to join and upload their music. The operator approves who gets in and surfaces what they think is worth hearing.
+            </p>
+            <p>
+              Listeners find subcults through the people they trust. They stream, save tracks, follow artists, and pay them directly when they want to support the work.
+            </p>
+            <p>
+              Artists get exposure and revenue. Operators build an audience around their taste. Good taste attracts better artists, which attracts more listeners, which validates the operator&apos;s reputation. The flywheel spins.
+            </p>
+            <p>
+              This is how scenes work in real life. SubCult just gives it infrastructure.
             </p>
           </div>
+        </div>
+      </Section>
 
-          <div className="prose prose-invert max-w-none space-y-6 sm:space-y-8 text-base sm:text-lg leading-relaxed">
-            <div className="space-y-4 sm:space-y-6">
-              <h2 className="text-2xl sm:text-3xl font-bold">Architecture Overview</h2>
-              <p className="text-white/80">
-                Subcult is built like the communities it serves — distributed, lightweight, and resilient.
-                It&apos;s a digital framework that connects local scenes and niche subgenres without relying on a single central platform.
-                Each part of the system — from maps to profiles to audio rooms — is designed to be independent yet connected, so communities can thrive on their own terms.
-                It scales naturally as more scenes appear and connect, just like the underground itself.
-                <br /><br />
-                <strong>All tools are open source.</strong> The code, infrastructure, and protocols are publicly available, 
-                allowing communities to understand, modify, and extend the platform to fit their needs. 
-                This transparency ensures that Subcult remains a tool for the community, by the community.
-              </p>
-            </div>
-
-            <div className="space-y-4 sm:space-y-6">
-              <h2 className="text-2xl sm:text-3xl font-bold">Core Features</h2>
-              <div className="space-y-4 sm:space-y-6 text-white/80">
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">Discovery & Mapping</h3>
-                  <p>
-                    Subcult is a living map of the underground.
-                    When you open the app, you see nearby scenes, collectives, and events — all mapped visually.
-                    You can zoom into your city or explore other regions.
-                    Everything is searchable by vibe, genre, and connection: from techno basements to experimental sound labs.
-                    It learns what matters to you based on proximity and trust, not algorithms.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">Scene Management</h3>
-                  <p>
-                    Every collective, label, or DIY space can create its own scene inside Subcult.
-                    Each scene controls its look, tone, and membership — from open communities to invite-only circles.
-                    Curators can define visuals, color palettes, and who gets to join or post.
-                    Each scene feels like its own world — Subcult just connects them together.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">Event & Content Sharing</h3>
-                  <p>
-                    Events, mixes, releases, and zines are all shared directly inside scenes.
-                    You can announce a party, stream a set, or post a flyer — and your audience sees it instantly.
-                    People nearby get updates in real time when something&apos;s happening.
-                    Everything is designed to flow naturally between local audiences and connected scenes.
-                    <br /><br />
-                    <strong>Streaming is built on peer-to-peer (P2P) infrastructure.</strong> 
-                    Live sets and audio streams are distributed directly between participants, 
-                    reducing server costs and keeping the network decentralized. 
-                    This means lower latency, better quality, and true independence from centralized streaming services.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">Community Tools</h3>
-                  <p>
-                    Subcult is built around conversation and collaboration.
-                    Scenes have chat spaces, pinned updates, and shared resources.
-                    You can plan an event, share a mix, or coordinate a pop-up with your crew.
-                    It&apos;s not about followers — it&apos;s about real connection between artists, organizers, and listeners.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-4 sm:space-y-6">
-              <h2 className="text-2xl sm:text-3xl font-bold">Technology Stack</h2>
-              <div className="space-y-4 sm:space-y-6 text-white/80">
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">Frontend</h3>
-                  <p>
-                    The interface is designed to feel like a mix of a map, a radio, and a zine.
-                    It&apos;s built with modern web tools that make it fast, smooth, and accessible on any device.
-                    The map and sound layers are dynamic, loading local activity as you move.
-                    The design language is clean, dark, and futuristic — inspired by club posters and underground flyers.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">Backend</h3>
-                  <p>
-                    Behind the scenes, Subcult runs a network that keeps everything fast, private, and secure.
-                    Scenes store their own data safely, and content loads from nearby servers so it feels instant.
-                    The system is modular — if one part goes down, the rest keeps working.
-                    It&apos;s built to handle bursts of traffic (like when an event drops) without slowing down.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">Infrastructure</h3>
-                  <p>
-                    Subcult runs on a mix of cloud hosting and distributed storage.
-                    That means reliability and speed without a single point of failure.
-                    Media (like event posters and live sets) are delivered through global servers for fast access anywhere.
-                    Backups, monitoring, and safety checks keep the network stable for everyone.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-4 sm:space-y-6">
-              <h2 className="text-2xl sm:text-3xl font-bold">Data & Privacy</h2>
-              <p className="text-white/80">
-                Subcult values privacy as much as creativity.
-                Location data is optional and only shared when you choose to.
-                Personal info is never sold or tracked for ads — period.
-                Each scene manages its own members, and you can delete your data or account anytime.
-                It&apos;s about connection, not surveillance.
-              </p>
-            </div>
-
-            <div className="space-y-4 sm:space-y-6">
-              <h2 className="text-2xl sm:text-3xl font-bold">Financial Independence</h2>
-              <p className="text-white/80">
-                <strong>Finances are managed directly by the subcult themselves.</strong>
-                Each scene controls its own revenue, payments, and financial operations.
-                Whether it&apos;s event ticket sales, merchandise, or community funding, 
-                the money flows directly to the organizers and artists — no platform takes a cut.
-                This ensures that value stays within the community and supports the scenes that create it.
-              </p>
-            </div>
-
-            <div className="space-y-4 sm:space-y-6">
-              <h2 className="text-2xl sm:text-3xl font-bold">API & Integrations</h2>
-              <p className="text-white/80">
-                Subcult connects with the tools artists already use — from streaming platforms to calendars.
-                You can embed a mix, link to a release, or publish your Subcult events elsewhere.
-                Developers and collectives can use open tools to build new interfaces or integrations that fit their needs.
-              </p>
-            </div>
-
-            <div className="space-y-4 sm:space-y-6">
-              <h2 className="text-2xl sm:text-3xl font-bold">Future Development</h2>
-              <p className="text-white/80 mb-4">
-                Subcult will evolve as the underground does.
-                Coming features include:
-              </p>
-              <ul className="list-disc list-inside space-y-2 ml-4 text-white/80">
-                <li>A genre spectrum — a visual way to explore subgenres and micro-scenes.</li>
-                <li>Offline mode — explore scenes and events when traveling without connection.</li>
-                <li>Scene alliances — link communities across cities.</li>
-                <li>Creator grants and support tools to help sustain collectives.</li>
-                <li>Experimental radio nodes to broadcast live sets across connected spaces.</li>
-              </ul>
-              <p className="text-white/80 mt-4">
-                Subcult grows as the community grows — it&apos;s built to expand with every new sound that emerges.
-              </p>
-            </div>
+      {/* For Listeners */}
+      <Section className="max-w-3xl mx-auto border-t border-white/10">
+        <div className="space-y-6">
+          <h2 className="text-2xl sm:text-3xl font-bold">For listeners</h2>
+          <div className="text-white/80 space-y-4 text-base sm:text-lg leading-relaxed">
+            <p>
+              Browse subcults by location or genre. Stream tracks and mixes—some free, some paid. Save what you like to your library. Follow artists and whole subcults to get notified when new music drops.
+            </p>
+            <p>
+              Create playlists—public, private, or collaborative. Leave comments on artist profiles. Send messages to other users. When you want to support an artist, you pay them directly. No middlemen, no platform cut. The money lands in their wallet instantly.
+            </p>
           </div>
+        </div>
+      </Section>
+
+      {/* For Artists */}
+      <Section className="max-w-3xl mx-auto border-t border-white/10">
+        <div className="space-y-6">
+          <h2 className="text-2xl sm:text-3xl font-bold">For artists</h2>
+          <div className="text-white/80 space-y-4 text-base sm:text-lg leading-relaxed">
+            <p>
+              Upload tracks and DJ mixes with full metadata—BPM, genre, descriptions. Set your own pricing: free streaming, paid streaming, paid downloads, or turn it off entirely. Control who sees what: public, subcult-only, or private.
+            </p>
+            <p>
+              Join subcults to get your music distributed through trusted channels. Go live with broadcast streaming if you want to perform. Submit tracks to curated playlists.
+            </p>
+            <p>
+              When someone pays you, the money goes directly to your wallet. No payout thresholds. No waiting periods. No 30% cut to a platform. Just peer-to-peer payments, instant and global.
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      {/* For Curators */}
+      <Section className="max-w-3xl mx-auto border-t border-white/10">
+        <div className="space-y-6">
+          <h2 className="text-2xl sm:text-3xl font-bold">For operators</h2>
+          <div className="text-white/80 space-y-4 text-base sm:text-lg leading-relaxed">
+            <p>
+              Create a subcult around your scene, your genre, your taste. Set the guidelines for what belongs and what doesn&apos;t. Approve or reject artists who apply. Feature tracks and mixes you think people should hear.
+            </p>
+            <p>
+              Build playlists that accept submissions from artists. Broadcast live to your community. Build an audience around taste, not just your personal output.
+            </p>
+            <p>
+              You can also bring in contributors—people who help run things without taking on full operator responsibility. It&apos;s your space to run how you want.
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      {/* Payments */}
+      <Section className="max-w-3xl mx-auto border-t border-white/10">
+        <div className="space-y-6">
+          <h2 className="text-2xl sm:text-3xl font-bold">How payments work</h2>
+          <div className="text-white/80 space-y-6 text-base sm:text-lg leading-relaxed">
+            <p>
+              We use stablecoin payments. Low fees, fast settlement, works anywhere in the world.
+            </p>
+            <p>
+              When a listener pays for a stream, buys a download, or tips an artist, the money transfers directly to the artist&apos;s wallet. No waiting. No minimum payout. An artist in Lagos can get paid by a listener in Berlin without either of them needing a US bank account.
+            </p>
+            <p>
+              The goal is to keep as much value as possible flowing to the people making and championing the music.
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      {/* CTA */}
+      <Section className="max-w-3xl mx-auto border-t border-white/10">
+        <div className="text-center space-y-6">
+          <p className="text-white/80 text-base sm:text-lg">
+            The core loop works. Now we&apos;re figuring out which scenes, which operators, which communities to build with first.
+          </p>
+          <Link
+            href="/"
+            className="inline-block px-8 py-4 rounded-lg font-medium bg-white text-black hover:bg-white/90 active:bg-white/80 transition-all min-h-[44px]"
+          >
+            Join the waitlist
+          </Link>
         </div>
       </Section>
 
@@ -215,4 +178,3 @@ export default function TechnicalPage() {
     </main>
   )
 }
-

@@ -78,13 +78,19 @@ export default function Home() {
                 href="/about"
                 className="inline-block text-white/60 hover:text-white/80 active:text-white text-sm sm:text-base underline transition-colors min-h-[44px] flex items-center"
               >
-                What is Subcult?
+                What is SubCult?
+              </Link>
+              <Link
+                href="/subcult"
+                className="inline-block text-white/60 hover:text-white/80 active:text-white text-sm sm:text-base underline transition-colors min-h-[44px] flex items-center"
+              >
+                What is a Subcult?
               </Link>
               <Link
                 href="/technical"
                 className="inline-block text-white/60 hover:text-white/80 active:text-white text-sm sm:text-base underline transition-colors min-h-[44px] flex items-center"
               >
-                Technical Solutions
+                How it Works
               </Link>
             </div>
           </div>
