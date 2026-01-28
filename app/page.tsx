@@ -11,7 +11,6 @@ import HeroSection from '@/components/HeroSection'
 import WhatIsSubcultSection from '@/components/WhatIsSubcultSection'
 import SubcultConceptSection from '@/components/SubcultConceptSection'
 import HowItWorksSection from '@/components/HowItWorksSection'
-import ExploreScenesSection from '@/components/ExploreScenesSection'
 import Footer from '@/components/Footer'
 
 // Register GSAP plugins
@@ -38,7 +37,6 @@ export default function Home() {
       <WhatIsSubcultSection />
       <SubcultConceptSection />
       <HowItWorksSection />
-      <ExploreScenesSection />
       <Footer />
     </main>
   )
