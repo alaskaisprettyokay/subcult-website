@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react';
-import GeometricLogo from './GeometricLogo';
+import Image from 'next/image';
 
 // Navigation Component - light gray like subvert.fm
 const Navigation = () => {
@@ -32,9 +32,13 @@ const Navigation = () => {
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="flex items-center justify-between h-14">
             <div className="flex items-center gap-3">
-              <div className="w-7 h-7 text-gray-800">
-                <GeometricLogo className="w-full h-full" />
-              </div>
+              <Image
+                src="/subcult_mdrn logo.png"
+                alt="SubCult"
+                width={28}
+                height={28}
+                className="w-7 h-7 object-contain"
+              />
               <span className="font-bold text-gray-900 tracking-wider text-sm">SUBCULT</span>
             </div>
             <div className="hidden md:flex items-center gap-8">

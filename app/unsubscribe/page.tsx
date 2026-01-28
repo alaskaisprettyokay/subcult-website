@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import GeometricLogo from '@/components/GeometricLogo'
+import Image from 'next/image'
 
 export default function UnsubscribePage() {
   const [email, setEmail] = useState('')
@@ -55,8 +55,14 @@ export default function UnsubscribePage() {
     <div className="min-h-screen bg-[#1a1a1a] text-white flex items-center justify-center p-4">
       <Card className="w-full max-w-md bg-white/5 border-white/20">
         <CardHeader className="text-center">
-          <div className="w-16 h-16 mx-auto mb-4 text-white/60">
-            <GeometricLogo className="w-full h-full" />
+          <div className="w-16 h-16 mx-auto mb-4">
+            <Image
+              src="/subcult_mdrn logo.png"
+              alt="SubCult"
+              width={64}
+              height={64}
+              className="w-full h-full object-contain"
+            />
           </div>
           <CardTitle className="text-2xl">Unsubscribe from SubCult</CardTitle>
           <CardDescription className="text-gray-400">
