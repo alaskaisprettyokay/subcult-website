@@ -62,7 +62,7 @@ const HowItWorksSection = () => {
             How it <span className="text-gray-400">Works</span>
           </h2>
           <p className="text-xl text-gray-400">
-            A working product. Here's what you can do with it.
+            A working product. Here&apos;s what you can do with it.
           </p>
         </div>
 
@@ -75,7 +75,7 @@ const HowItWorksSection = () => {
           <div className="space-y-4 text-gray-400 leading-relaxed">
             <p>Someone creates a subcult around a sound, a scene, or a geography. Artists apply to join and upload their music. The operator approves who gets in and surfaces what they think is worth hearing.</p>
             <p>Listeners find subcults through the people they trust. They stream, save tracks, follow artists, and pay them directly when they want to support the work.</p>
-            <p>Artists get exposure and revenue. Operators build an audience around their taste. Good taste attracts better artists, which attracts more listeners, which validates the operator's reputation. The flywheel spins.</p>
+            <p>Artists get exposure and revenue. Operators build an audience around their taste. Good taste attracts better artists, which attracts more listeners, which validates the operator&apos;s reputation. The flywheel spins.</p>
             <p className="text-white font-medium">This is how scenes work in real life. SubCult just gives it infrastructure.</p>
           </div>
         </div>
@@ -163,7 +163,7 @@ const HowItWorksSection = () => {
           </h3>
           <div className="space-y-4 text-gray-400 leading-relaxed">
             <p>We use stablecoin payments. Low fees, fast settlement, works anywhere in the world.</p>
-            <p>When a listener pays for a stream, buys a download, or tips an artist, the money transfers directly to the artist's wallet. No waiting. No minimum payout. An artist in Lagos can get paid by a listener in Berlin without either of them needing a US bank account.</p>
+            <p>When a listener pays for a stream, buys a download, or tips an artist, the money transfers directly to the artist&apos;s wallet. No waiting. No minimum payout. An artist in Lagos can get paid by a listener in Berlin without either of them needing a US bank account.</p>
             <p className="text-white font-medium">The goal is to keep as much value as possible flowing to the people making and championing the music.</p>
           </div>
         </div>

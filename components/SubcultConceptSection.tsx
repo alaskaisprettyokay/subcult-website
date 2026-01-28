@@ -77,7 +77,7 @@ const SubcultConceptSection = () => {
             What is a <span className="text-gray-400">Subcult?</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            A subcult can be many things. But it's always built around someone with taste—and the trust that comes from consistently surfacing good music.
+            A subcult can be many things. But it&apos;s always built around someone with taste—and the trust that comes from consistently surfacing good music.
           </p>
         </div>
 
@@ -101,7 +101,7 @@ const SubcultConceptSection = () => {
         <div className="reveal-item opacity-0 mt-16 text-center">
           <div className="glass rounded-sm p-8">
             <p className="text-lg text-gray-300 leading-relaxed">
-              Each subcult is unique, but they all share something: they're spaces where the relationship between tastemaker and audience can actually thrive. Where good music gets the attention it deserves, and where that attention can translate into sustainable support for artists.
+              Each subcult is unique, but they all share something: they&apos;re spaces where the relationship between tastemaker and audience can actually thrive. Where good music gets the attention it deserves, and where that attention can translate into sustainable support for artists.
             </p>
           </div>
         </div>

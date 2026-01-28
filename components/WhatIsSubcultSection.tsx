@@ -59,20 +59,20 @@ const WhatIsSubcultSection = () => {
         <div className="space-y-12">
           <div className="reveal-item opacity-0">
             <p className="text-lg text-gray-300 leading-relaxed">
-              Think about how you actually discover music that sticks. Not the background noise, but the songs that become part of your life. Almost always, there's a person involved. A friend who knew you'd love it. A DJ whose taste you trust. A radio host who's been doing this for years.
+              Think about how you actually discover music that sticks. Not the background noise, but the songs that become part of your life. Almost always, there&apos;s a person involved. A friend who knew you&apos;d love it. A DJ whose taste you trust. A radio host who&apos;s been doing this for years.
             </p>
           </div>
 
           <div className="reveal-item opacity-0">
             <p className="text-lg text-gray-300 leading-relaxed">
-              That relationship—between the people who find music and the people who listen—is where culture actually happens. It's how sounds travel, how scenes form, how artists find their people. And right now, there's no good infrastructure for it online.
+              That relationship—between the people who find music and the people who listen—is where culture actually happens. It&apos;s how sounds travel, how scenes form, how artists find their people. And right now, there&apos;s no good infrastructure for it online.
             </p>
           </div>
 
           <div className="reveal-item opacity-0 glass rounded-sm p-8">
-            <h3 className="text-2xl font-bold text-white mb-4">What we're building</h3>
+            <h3 className="text-2xl font-bold text-white mb-4">What we&apos;re building</h3>
             <p className="text-gray-400 leading-relaxed mb-4">
-              We let tastemakers create their own spaces—communities built around their taste and the artists they champion. These aren't playlists. They're living ecosystems where artists and listeners actually connect.
+              We let tastemakers create their own spaces—communities built around their taste and the artists they champion. These aren&apos;t playlists. They&apos;re living ecosystems where artists and listeners actually connect.
             </p>
             <p className="text-gray-400 leading-relaxed">
               When a listener supports an artist through SubCult, the money goes directly to them. Instantly. Globally. No waiting, no middlemen taking 30%. We use stablecoin payments, which means an artist in Lagos can get paid by a fan in Berlin without either of them needing a US bank account.
@@ -80,7 +80,7 @@ const WhatIsSubcultSection = () => {
           </div>
 
           <div className="reveal-item opacity-0">
-            <h3 className="text-2xl font-bold text-white mb-6">Who it's for</h3>
+            <h3 className="text-2xl font-bold text-white mb-6">Who it&apos;s for</h3>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="bg-white/5 rounded-sm p-6 border border-white/10">
                 <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-4">
@@ -109,7 +109,7 @@ const WhatIsSubcultSection = () => {
           <div className="reveal-item opacity-0 glass rounded-sm p-8 border-l-4 border-white/30">
             <h3 className="text-2xl font-bold text-white mb-4">Why this matters now</h3>
             <p className="text-gray-400 leading-relaxed">
-              The current model isn't working. Artists can't make a living from streams. The people who find and champion music can't get paid at all. Listeners are drowning in infinite content but starving for actual connection. We think there's a better way—one where the people who make music and the people who champion it can actually build something sustainable.
+              The current model isn&apos;t working. Artists can&apos;t make a living from streams. The people who find and champion music can&apos;t get paid at all. Listeners are drowning in infinite content but starving for actual connection. We think there&apos;s a better way—one where the people who make music and the people who champion it can actually build something sustainable.
             </p>
           </div>
         </div>

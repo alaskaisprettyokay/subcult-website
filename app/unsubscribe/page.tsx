@@ -60,7 +60,7 @@ export default function UnsubscribePage() {
           </div>
           <CardTitle className="text-2xl">Unsubscribe from SubCult</CardTitle>
           <CardDescription className="text-gray-400">
-            We're sorry to see you go. Enter your email to unsubscribe from all SubCult communications.
+            We&apos;re sorry to see you go. Enter your email to unsubscribe from all SubCult communications.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -98,7 +98,7 @@ export default function UnsubscribePage() {
               </div>
               <p className="text-green-400 font-medium">{message}</p>
               <p className="text-sm text-gray-400">
-                You won't receive any more emails from us.
+                You won&apos;t receive any more emails from us.
               </p>
               <Button
                 onClick={() => window.location.href = '/'}
