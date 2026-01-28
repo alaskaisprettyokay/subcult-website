@@ -1,6 +1,6 @@
 'use client'
 
-import Image from 'next/image';
+import GeometricLogo from './GeometricLogo';
 
 // Footer
 const Footer = () => {
@@ -16,13 +16,9 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex items-center gap-4">
-            <Image
-              src="/subcult_mdrn logo.png"
-              alt="SubCult"
-              width={40}
-              height={40}
-              className="w-10 h-10 object-contain"
-            />
+            <div className="w-10 h-10 text-white/80">
+              <GeometricLogo className="w-full h-full" />
+            </div>
             <span className="text-xl font-bold text-white tracking-wider">SUBCULT</span>
           </div>
 

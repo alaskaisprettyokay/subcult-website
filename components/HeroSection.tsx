@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ArrowRight, Mail } from 'lucide-react';
-import Image from 'next/image';
+import GeometricLogo from './GeometricLogo';
 
 // Hero Section with email signup
 const HeroSection = () => {
@@ -82,40 +82,21 @@ const HeroSection = () => {
   return (
     <section ref={heroRef} className="relative min-h-screen flex flex-col items-center justify-center px-4">
       <div ref={logoRef} className="mb-8 relative">
-        <div className="w-24 h-24 md:w-32 md:h-32 animate-slow-rotate">
-          <Image
-            src="/subcult_mdrn logo.png"
-            alt="SubCult"
-            width={128}
-            height={128}
-            className="w-full h-full object-contain"
-          />
+        <div className="w-24 h-24 md:w-32 md:h-32 text-white/80 animate-slow-rotate">
+          <GeometricLogo className="w-full h-full" />
         </div>
-        <div className="absolute inset-0 w-24 h-24 md:w-32 md:h-32 blur-xl opacity-50 animate-slow-rotate">
-          <Image
-            src="/subcult_mdrn logo.png"
-            alt=""
-            width={128}
-            height={128}
-            className="w-full h-full object-contain"
-          />
+        <div className="absolute inset-0 w-24 h-24 md:w-32 md:h-32 text-white/40 blur-xl opacity-50 animate-slow-rotate">
+          <GeometricLogo className="w-full h-full" />
         </div>
       </div>
 
-      <div
+      <h1
         ref={titleRef}
-        className="mb-6 opacity-0"
+        className="text-5xl md:text-7xl lg:text-8xl font-bold text-center mb-6 text-white opacity-0 tracking-tight"
         style={{ perspective: '1000px' }}
       >
-        <Image
-          src="/SUBCULT.png"
-          alt="SUBCULT"
-          width={400}
-          height={100}
-          className="w-auto h-16 md:h-20 lg:h-24 object-contain"
-          priority
-        />
-      </div>
+        Subcult
+      </h1>
 
       <p className="text-lg md:text-xl text-gray-400 text-center max-w-xl mb-10 opacity-0 animate-[reveal-up_0.8s_ease-out_0.4s_forwards]">
         Discover and support underground music communities around the world.
