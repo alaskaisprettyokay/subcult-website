@@ -2,9 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+@layer base {
+  :root {
+    --background: #1a1a1a;
+    --foreground: #ededed;
+    --border: 240 5.9% 10%;
+    --input: 240 5.9% 10%;
+    --ring: 240 5% 64.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --radius: 0.5rem;
+  }
 }
 
 * {
@@ -17,7 +37,7 @@ html {
   scroll-behavior: smooth;
   /* Prevent purple overscroll bounce on iOS/macOS */
   overscroll-behavior: none;
-  background: #0a0a0a;
+  background: #1a1a1a;
   /* Prevent horizontal scroll */
   overflow-x: hidden;
   width: 100%;
@@ -31,10 +51,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Hide scrollbar but keep functionality */
+  scrollbar-width: thin;
+  scrollbar-color: #666 #1a1a1a;
   /* Prevent purple overscroll bounce */
   overscroll-behavior: none;
-  /* Ensure black background during transitions */
-  background-color: #0a0a0a !important;
+  /* Ensure dark background during transitions */
+  background-color: #1a1a1a !important;
   /* Prevent horizontal scroll */
   overflow-x: hidden;
   width: 100%;
@@ -49,283 +72,119 @@ a {
   text-decoration: none;
 }
 
-a:visited {
-  color: inherit;
+/* Custom utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-a:active {
-  color: inherit;
+/* Custom cursor effect for interactive elements */
+.cursor-glow {
+  cursor: none;
 }
 
-/* Prevent purple focus outlines */
-*:focus {
-  outline: none;
-}
-
-*:focus-visible {
-  outline: 2px solid white;
-  outline-offset: 2px;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
-@layer components {
-  /* Form Components */
-  .form-container {
-    @apply w-full max-w-md space-y-6 mx-auto;
-  }
-
-  .form-group {
-    @apply space-y-4;
-  }
-
-  .form-row {
-    @apply flex flex-col sm:flex-row gap-3;
-  }
-
-  .form-input {
-    @apply px-4 py-3 rounded-lg;
-    @apply bg-white/5 backdrop-blur-sm border border-white/10;
-    @apply text-white placeholder:text-white/50;
-    @apply focus:outline-none focus:ring-2 focus:ring-white/20;
-    @apply disabled:opacity-50 disabled:cursor-not-allowed;
-    @apply transition-all;
-    /* 16px minimum to prevent iOS zoom */
-    font-size: 16px;
-    min-height: 44px; /* Touch target minimum */
-  }
-
-  .form-input--small {
-    @apply px-4 py-2;
-    font-size: 16px; /* Prevent iOS zoom */
-    min-height: 44px; /* Touch target minimum */
-  }
-
-  .form-button {
-    @apply px-6 py-3 rounded-lg font-medium;
-    @apply bg-white text-black;
-    @apply hover:bg-white/90 active:scale-95;
-    @apply disabled:opacity-50 disabled:cursor-not-allowed;
-    @apply transition-all;
-    /* Touch target minimum */
-    min-height: 44px;
-    min-width: 44px;
-    /* 16px font size */
-    font-size: 16px;
-  }
-
-  .form-button--secondary {
-    @apply bg-white/5 text-white border border-white/10;
-    @apply hover:bg-white/10;
-  }
-
-  .form-button--active {
-    @apply bg-white text-black;
-  }
-
-  /* Type Selector */
-  .type-selector {
-    @apply flex gap-2;
-  }
-
-  .type-selector__button {
-    @apply flex-1 px-4 py-3 rounded-lg font-medium transition-all;
-    /* Touch target minimum */
-    min-height: 44px;
-    font-size: 16px;
-  }
-
-  /* Section Styles */
-  .section {
-    @apply py-12 px-4;
-  }
-  
-  @media (min-width: 768px) {
-    .section {
-      @apply py-20;
-    }
-  }
-
-  .section__content {
-    @apply max-w-7xl mx-auto;
-  }
-
-  .section--centered {
-    @apply flex items-center justify-center;
-  }
-
-  /* Hero Section */
-  .hero {
-    @apply relative w-full;
-    height: 100dvh; /* Dynamic viewport height for iOS */
-    height: 100vh; /* Fallback for older browsers */
-    min-height: -webkit-fill-available; /* iOS Safari fix */
-    overflow: visible; /* Allow scrolling */
-    touch-action: pan-y; /* Allow vertical scrolling on mobile */
-    /* Safe area insets for notched devices */
-    padding-top: max(1rem, env(safe-area-inset-top));
-    padding-bottom: max(1rem, env(safe-area-inset-bottom));
-  }
-
-  .hero__logo {
-    @apply absolute z-30;
-    top: max(1rem, env(safe-area-inset-top, 1rem));
-  }
-
-  @media (min-width: 640px) {
-    .hero__logo {
-      top: max(1.5rem, env(safe-area-inset-top, 1.5rem));
-    }
-  }
-
-  .hero__logo--center {
-    @apply left-1/2 -translate-x-1/2;
-  }
-
-  .hero__logo--right {
-    right: max(1rem, env(safe-area-inset-right, 1rem));
-  }
-
-  @media (min-width: 640px) {
-    .hero__logo--right {
-      right: max(1.5rem, env(safe-area-inset-right, 1.5rem));
-    }
-  }
-
-  /* Signup Section */
-  .signup-section {
-    @apply relative min-h-screen flex items-center justify-center;
-    /* Safe area insets */
-    padding-top: max(2rem, env(safe-area-inset-top, 2rem));
-    padding-bottom: max(2rem, env(safe-area-inset-bottom, 2rem));
-  }
-
-  .signup-section__content {
-    @apply relative z-10 text-center space-y-8 max-w-3xl mx-auto px-4;
-    @apply transition-opacity duration-300;
-  }
-
-  .signup-section__header {
-    @apply space-y-4;
-  }
-
-  .signup-section__title {
-    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight;
-  }
-
-  .signup-section__subtitle {
-    @apply text-base sm:text-lg md:text-xl lg:text-2xl text-white/70 max-w-2xl mx-auto;
-  }
-
-  .signup-section__form {
-    @apply pt-8 flex justify-center;
-  }
-
-  /* Demo Button */
-  .demo-button {
-    @apply flex flex-col items-center justify-center gap-3;
-    @apply px-6 py-4;
-    @apply text-white/70 hover:text-white active:text-white;
-    @apply transition-all duration-300;
-    @apply focus:outline-none focus:ring-2 focus:ring-white/20 focus:ring-offset-2 focus:ring-offset-[#0a0a0a];
-    @apply rounded-lg;
-    /* Touch target minimum */
-    min-height: 44px;
-  }
-
-  .demo-button:hover {
-    @apply transform scale-105;
-  }
-
-  .demo-button:active {
-    @apply transform scale-95;
-  }
-
-  .demo-button svg {
-    @apply w-12 h-12 sm:w-16 sm:h-16;
-    @apply text-white/60 group-hover:text-white;
-  }
-
-  .demo-button:hover svg {
-    @apply text-white;
-  }
-
-  .demo-button__text {
-    @apply text-sm sm:text-base font-medium;
-  }
-
-  /* Footer */
-  .footer {
-    @apply border-t border-white/10 py-8 px-4;
-    /* Safe area insets */
-    padding-bottom: max(2rem, env(safe-area-inset-bottom, 2rem));
-  }
-
-  .footer__content {
-    @apply max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-white/50;
-  }
-
-  .footer__links {
-    @apply flex gap-6;
-  }
-
-  .footer__link {
-    @apply hover:text-white/80 transition-colors;
-  }
-}
-
-/* Mapbox styles */
-@import 'mapbox-gl/dist/mapbox-gl.css';
-
-/* Hide Mapbox logo and attribution */
-.mapboxgl-ctrl-logo,
-.mapboxgl-ctrl-attrib {
-  display: none !important;
-}
-
-/* Fullscreen map container for iOS compatibility */
-.map-fullscreen {
-  min-height: 100vh; /* Fallback for older browsers */
-  min-height: 100dvh; /* Dynamic viewport height for iOS */
-  min-height: -webkit-fill-available; /* iOS Safari specific fix */
-  /* Ensure scrolling works on mobile */
-  touch-action: pan-y;
-  overflow: visible;
-  /* Safe area insets */
-  padding-top: env(safe-area-inset-top, 0);
-  padding-bottom: env(safe-area-inset-bottom, 0);
+/* Enhanced card hover effects */
+.scene-card {
   position: relative;
 }
 
-/* Ensure map container doesn't block scrolling */
-.mapboxgl-canvas-container,
-.mapboxgl-canvas {
-  touch-action: pan-y !important;
+.scene-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
 }
 
-/* Prevent purple overscroll bounce on all scrollable elements */
-* {
-  overscroll-behavior: none;
-  -webkit-overflow-scrolling: touch;
+.scene-card:hover::before {
+  opacity: 1;
 }
 
-/* Ensure black background during scroll transitions */
-html,
-body,
-main {
-  background-color: #0a0a0a !important;
+/* Magnetic button hover state */
+.magnetic-btn:hover {
+  transform: scale(1.05);
 }
 
-/* Prevent purple bounce effect on iOS Safari */
-@supports (-webkit-touch-callout: none) {
-  body {
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: none;
+/* Input focus animation */
+input:focus {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+/* Toggle switch elastic animation */
+.toggle-pill {
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Step number glow animation - white */
+@keyframes step-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
   }
 }
 
+.step-number-glow {
+  animation: step-glow 3s ease-in-out infinite;
+}
 
+/* Parallax layer speeds */
+.parallax-slow {
+  will-change: transform;
+}
+
+.parallax-fast {
+  will-change: transform;
+}
+
+/* Image reveal mask */
+.image-reveal {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.image-reveal.revealed {
+  clip-path: inset(0 0 0 0);
+}
+
+/* Text highlight on scroll */
+.text-highlight {
+  background: linear-gradient(90deg, #fff 50%, transparent 50%);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  transition: background-position 0.5s ease;
+}
+
+.text-highlight.active {
+  background-position: 0 0;
+}
+
+/* Webkit scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
