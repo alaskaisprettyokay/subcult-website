@@ -1,0 +1,331 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Prevent purple overscroll bounce on iOS/macOS */
+  overscroll-behavior: none;
+  background: #0a0a0a;
+  /* Prevent horizontal scroll */
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Prevent purple overscroll bounce */
+  overscroll-behavior: none;
+  /* Ensure black background during transitions */
+  background-color: #0a0a0a !important;
+  /* Prevent horizontal scroll */
+  overflow-x: hidden;
+  width: 100%;
+  /* Base font size 16px to prevent iOS zoom */
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Prevent purple link colors */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:visited {
+  color: inherit;
+}
+
+a:active {
+  color: inherit;
+}
+
+/* Prevent purple focus outlines */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  /* Form Components */
+  .form-container {
+    @apply w-full max-w-md space-y-6 mx-auto;
+  }
+
+  .form-group {
+    @apply space-y-4;
+  }
+
+  .form-row {
+    @apply flex flex-col sm:flex-row gap-3;
+  }
+
+  .form-input {
+    @apply px-4 py-3 rounded-lg;
+    @apply bg-white/5 backdrop-blur-sm border border-white/10;
+    @apply text-white placeholder:text-white/50;
+    @apply focus:outline-none focus:ring-2 focus:ring-white/20;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply transition-all;
+    /* 16px minimum to prevent iOS zoom */
+    font-size: 16px;
+    min-height: 44px; /* Touch target minimum */
+  }
+
+  .form-input--small {
+    @apply px-4 py-2;
+    font-size: 16px; /* Prevent iOS zoom */
+    min-height: 44px; /* Touch target minimum */
+  }
+
+  .form-button {
+    @apply px-6 py-3 rounded-lg font-medium;
+    @apply bg-white text-black;
+    @apply hover:bg-white/90 active:scale-95;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply transition-all;
+    /* Touch target minimum */
+    min-height: 44px;
+    min-width: 44px;
+    /* 16px font size */
+    font-size: 16px;
+  }
+
+  .form-button--secondary {
+    @apply bg-white/5 text-white border border-white/10;
+    @apply hover:bg-white/10;
+  }
+
+  .form-button--active {
+    @apply bg-white text-black;
+  }
+
+  /* Type Selector */
+  .type-selector {
+    @apply flex gap-2;
+  }
+
+  .type-selector__button {
+    @apply flex-1 px-4 py-3 rounded-lg font-medium transition-all;
+    /* Touch target minimum */
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  /* Section Styles */
+  .section {
+    @apply py-12 px-4;
+  }
+  
+  @media (min-width: 768px) {
+    .section {
+      @apply py-20;
+    }
+  }
+
+  .section__content {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .section--centered {
+    @apply flex items-center justify-center;
+  }
+
+  /* Hero Section */
+  .hero {
+    @apply relative w-full;
+    height: 100dvh; /* Dynamic viewport height for iOS */
+    height: 100vh; /* Fallback for older browsers */
+    min-height: -webkit-fill-available; /* iOS Safari fix */
+    overflow: visible; /* Allow scrolling */
+    touch-action: pan-y; /* Allow vertical scrolling on mobile */
+    /* Safe area insets for notched devices */
+    padding-top: max(1rem, env(safe-area-inset-top));
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+
+  .hero__logo {
+    @apply absolute z-30;
+    top: max(1rem, env(safe-area-inset-top, 1rem));
+  }
+
+  @media (min-width: 640px) {
+    .hero__logo {
+      top: max(1.5rem, env(safe-area-inset-top, 1.5rem));
+    }
+  }
+
+  .hero__logo--center {
+    @apply left-1/2 -translate-x-1/2;
+  }
+
+  .hero__logo--right {
+    right: max(1rem, env(safe-area-inset-right, 1rem));
+  }
+
+  @media (min-width: 640px) {
+    .hero__logo--right {
+      right: max(1.5rem, env(safe-area-inset-right, 1.5rem));
+    }
+  }
+
+  /* Signup Section */
+  .signup-section {
+    @apply relative min-h-screen flex items-center justify-center;
+    /* Safe area insets */
+    padding-top: max(2rem, env(safe-area-inset-top, 2rem));
+    padding-bottom: max(2rem, env(safe-area-inset-bottom, 2rem));
+  }
+
+  .signup-section__content {
+    @apply relative z-10 text-center space-y-8 max-w-3xl mx-auto px-4;
+    @apply transition-opacity duration-300;
+  }
+
+  .signup-section__header {
+    @apply space-y-4;
+  }
+
+  .signup-section__title {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight;
+  }
+
+  .signup-section__subtitle {
+    @apply text-base sm:text-lg md:text-xl lg:text-2xl text-white/70 max-w-2xl mx-auto;
+  }
+
+  .signup-section__form {
+    @apply pt-8 flex justify-center;
+  }
+
+  /* Demo Button */
+  .demo-button {
+    @apply flex flex-col items-center justify-center gap-3;
+    @apply px-6 py-4;
+    @apply text-white/70 hover:text-white active:text-white;
+    @apply transition-all duration-300;
+    @apply focus:outline-none focus:ring-2 focus:ring-white/20 focus:ring-offset-2 focus:ring-offset-[#0a0a0a];
+    @apply rounded-lg;
+    /* Touch target minimum */
+    min-height: 44px;
+  }
+
+  .demo-button:hover {
+    @apply transform scale-105;
+  }
+
+  .demo-button:active {
+    @apply transform scale-95;
+  }
+
+  .demo-button svg {
+    @apply w-12 h-12 sm:w-16 sm:h-16;
+    @apply text-white/60 group-hover:text-white;
+  }
+
+  .demo-button:hover svg {
+    @apply text-white;
+  }
+
+  .demo-button__text {
+    @apply text-sm sm:text-base font-medium;
+  }
+
+  /* Footer */
+  .footer {
+    @apply border-t border-white/10 py-8 px-4;
+    /* Safe area insets */
+    padding-bottom: max(2rem, env(safe-area-inset-bottom, 2rem));
+  }
+
+  .footer__content {
+    @apply max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-white/50;
+  }
+
+  .footer__links {
+    @apply flex gap-6;
+  }
+
+  .footer__link {
+    @apply hover:text-white/80 transition-colors;
+  }
+}
+
+/* Mapbox styles */
+@import 'mapbox-gl/dist/mapbox-gl.css';
+
+/* Hide Mapbox logo and attribution */
+.mapboxgl-ctrl-logo,
+.mapboxgl-ctrl-attrib {
+  display: none !important;
+}
+
+/* Fullscreen map container for iOS compatibility */
+.map-fullscreen {
+  min-height: 100vh; /* Fallback for older browsers */
+  min-height: 100dvh; /* Dynamic viewport height for iOS */
+  min-height: -webkit-fill-available; /* iOS Safari specific fix */
+  /* Ensure scrolling works on mobile */
+  touch-action: pan-y;
+  overflow: visible;
+  /* Safe area insets */
+  padding-top: env(safe-area-inset-top, 0);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+  position: relative;
+}
+
+/* Ensure map container doesn't block scrolling */
+.mapboxgl-canvas-container,
+.mapboxgl-canvas {
+  touch-action: pan-y !important;
+}
+
+/* Prevent purple overscroll bounce on all scrollable elements */
+* {
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Ensure black background during scroll transitions */
+html,
+body,
+main {
+  background-color: #0a0a0a !important;
+}
+
+/* Prevent purple bounce effect on iOS Safari */
+@supports (-webkit-touch-callout: none) {
+  body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: none;
+  }
+}
+
+
