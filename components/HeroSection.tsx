@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ArrowRight, Mail } from 'lucide-react';
 import GeometricLogo from './GeometricLogo';
+import Image from 'next/image';
 
 // Hero Section with email signup
 const HeroSection = () => {
@@ -90,13 +91,20 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <h1
+      <div
         ref={titleRef}
-        className="text-5xl md:text-7xl lg:text-8xl font-bold text-center mb-6 text-white opacity-0 tracking-tight"
+        className="mb-6 opacity-0"
         style={{ perspective: '1000px' }}
       >
-        Subcult
-      </h1>
+        <Image
+          src="/SUBCULT.png"
+          alt="SUBCULT"
+          width={400}
+          height={100}
+          className="w-auto h-16 md:h-20 lg:h-24 object-contain"
+          priority
+        />
+      </div>
 
       <p className="text-lg md:text-xl text-gray-400 text-center max-w-xl mb-10 opacity-0 animate-[reveal-up_0.8s_ease-out_0.4s_forwards]">
         Discover and support underground music communities around the world.
