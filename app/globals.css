@@ -38,8 +38,9 @@ html {
   /* Prevent purple overscroll bounce on iOS/macOS */
   overscroll-behavior: none;
   background: #1a1a1a;
-  /* Prevent horizontal scroll */
+  /* Prevent horizontal scroll, explicitly allow vertical scroll */
   overflow-x: hidden;
+  overflow-y: auto;
   width: 100%;
 }
 
@@ -58,8 +59,9 @@ body {
   overscroll-behavior: none;
   /* Ensure dark background during transitions */
   background-color: #1a1a1a !important;
-  /* Prevent horizontal scroll */
+  /* Prevent horizontal scroll, explicitly allow vertical scroll */
   overflow-x: hidden;
+  overflow-y: auto;
   width: 100%;
   /* Base font size 16px to prevent iOS zoom */
   font-size: 16px;
