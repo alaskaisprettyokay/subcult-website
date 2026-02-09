@@ -59,7 +59,7 @@ const HowItWorksSection = () => {
       <div className="max-w-4xl mx-auto">
         <div className="reveal-item opacity-0 text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
-            How it <span className="text-gray-400">Works</span>
+            How it <span className="text-purple-400">Works</span>
           </h2>
           <p className="text-xl text-gray-400">
             A working product. Here&apos;s what you can do with it.
@@ -69,7 +69,7 @@ const HowItWorksSection = () => {
         {/* The Core Loop */}
         <div className="reveal-item opacity-0 glass rounded-sm p-8 mb-12">
           <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-            <Zap className="w-6 h-6 text-white/80" />
+            <Zap className="w-6 h-6 text-purple-400" />
             The core loop
           </h3>
           <div className="space-y-4 text-gray-400 leading-relaxed">
@@ -83,7 +83,7 @@ const HowItWorksSection = () => {
         {/* For Listeners */}
         <div className="reveal-item opacity-0 mb-12">
           <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-            <Headphones className="w-6 h-6 text-white/80" />
+            <Headphones className="w-6 h-6 text-purple-400" />
             For listeners
           </h3>
           <div className="grid md:grid-cols-2 gap-4">
@@ -97,8 +97,8 @@ const HowItWorksSection = () => {
               { icon: Share2, text: 'Send messages to other users' },
               { icon: Wallet, text: 'Pay artists directly—no middlemen, no platform cut' },
             ].map((item, i) => (
-              <div key={i} className="flex items-center gap-3 p-4 bg-white/5 rounded-sm border border-white/10">
-                <item.icon className="w-5 h-5 text-white/60 flex-shrink-0" />
+              <div key={i} className="flex items-center gap-3 p-4 bg-white/5 rounded-sm border border-purple-500/10 hover:border-purple-500/30 transition-colors">
+                <item.icon className="w-5 h-5 text-purple-400/60 flex-shrink-0" />
                 <span className="text-gray-300 text-sm">{item.text}</span>
               </div>
             ))}
@@ -108,7 +108,7 @@ const HowItWorksSection = () => {
         {/* For Artists */}
         <div className="reveal-item opacity-0 mb-12">
           <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-            <Mic2 className="w-6 h-6 text-white/80" />
+            <Mic2 className="w-6 h-6 text-purple-400" />
             For artists
           </h3>
           <div className="grid md:grid-cols-2 gap-4">
@@ -122,8 +122,8 @@ const HowItWorksSection = () => {
               { icon: Wallet, text: 'Money goes directly to your wallet—instant and global' },
               { icon: Zap, text: 'No payout thresholds, no waiting periods, no 30% cut' },
             ].map((item, i) => (
-              <div key={i} className="flex items-center gap-3 p-4 bg-white/5 rounded-sm border border-white/10">
-                <item.icon className="w-5 h-5 text-white/60 flex-shrink-0" />
+              <div key={i} className="flex items-center gap-3 p-4 bg-white/5 rounded-sm border border-purple-500/10 hover:border-purple-500/30 transition-colors">
+                <item.icon className="w-5 h-5 text-purple-400/60 flex-shrink-0" />
                 <span className="text-gray-300 text-sm">{item.text}</span>
               </div>
             ))}
@@ -133,7 +133,7 @@ const HowItWorksSection = () => {
         {/* For Operators */}
         <div className="reveal-item opacity-0 mb-12">
           <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-            <Building2 className="w-6 h-6 text-white/80" />
+            <Building2 className="w-6 h-6 text-purple-400" />
             For operators
           </h3>
           <div className="grid md:grid-cols-2 gap-4">
@@ -147,8 +147,8 @@ const HowItWorksSection = () => {
               { icon: User, text: 'Bring in contributors to help run things' },
               { icon: Globe, text: 'Build an audience around taste, not just personal output' },
             ].map((item, i) => (
-              <div key={i} className="flex items-center gap-3 p-4 bg-white/5 rounded-sm border border-white/10">
-                <item.icon className="w-5 h-5 text-white/60 flex-shrink-0" />
+              <div key={i} className="flex items-center gap-3 p-4 bg-white/5 rounded-sm border border-purple-500/10 hover:border-purple-500/30 transition-colors">
+                <item.icon className="w-5 h-5 text-purple-400/60 flex-shrink-0" />
                 <span className="text-gray-300 text-sm">{item.text}</span>
               </div>
             ))}
@@ -158,7 +158,7 @@ const HowItWorksSection = () => {
         {/* How Payments Work */}
         <div className="reveal-item opacity-0 glass rounded-sm p-8 border border-white/20">
           <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
-            <Wallet className="w-6 h-6 text-white/80" />
+            <Wallet className="w-6 h-6 text-purple-400" />
             How payments work
           </h3>
           <div className="space-y-4 text-gray-400 leading-relaxed">

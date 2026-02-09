@@ -5,13 +5,13 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 // Import our new components
-import AnimatedBackground from '@/components/AnimatedBackground'
-import Navigation from '@/components/Navigation'
-import HeroSection from '@/components/HeroSection'
-import WhatIsSubcultSection from '@/components/WhatIsSubcultSection'
-import SubcultConceptSection from '@/components/SubcultConceptSection'
-import HowItWorksSection from '@/components/HowItWorksSection'
-import Footer from '@/components/Footer'
+import AnimatedBackground from '../components/AnimatedBackground'
+import Navigation from '../components/Navigation'
+import HeroSection from '../components/HeroSection'
+import WhatIsSubcultSection from '../components/WhatIsSubcultSection'
+import SubcultConceptSection from '../components/SubcultConceptSection'
+import HowItWorksSection from '../components/HowItWorksSection'
+import Footer from '../components/Footer'
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger)

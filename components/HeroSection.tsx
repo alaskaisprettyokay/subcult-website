@@ -83,10 +83,10 @@ const HeroSection = () => {
   return (
     <section ref={heroRef} className="relative min-h-screen flex flex-col items-center justify-center px-4">
       <div ref={logoRef} className="mb-8 relative">
-        <div className="w-24 h-24 md:w-32 md:h-32 text-white/80 animate-slow-rotate">
+        <div className="w-24 h-24 md:w-32 md:h-32 text-purple-300/90 animate-slow-rotate">
           <GeometricLogo className="w-full h-full" />
         </div>
-        <div className="absolute inset-0 w-24 h-24 md:w-32 md:h-32 text-white/40 blur-xl opacity-50 animate-slow-rotate">
+        <div className="absolute inset-0 w-24 h-24 md:w-32 md:h-32 text-purple-500/40 blur-xl opacity-50 animate-slow-rotate">
           <GeometricLogo className="w-full h-full" />
         </div>
       </div>

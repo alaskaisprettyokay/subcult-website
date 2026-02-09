@@ -74,7 +74,7 @@ const SubcultConceptSection = () => {
       <div className="max-w-4xl mx-auto">
         <div className="reveal-item opacity-0 text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
-            What is a <span className="text-gray-400">Subcult?</span>
+            What is a <span className="text-purple-400">Subcult?</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             A subcult can be many things. But it&apos;s always built around someone with taste—and the trust that comes from consistently surfacing good music.
@@ -86,8 +86,8 @@ const SubcultConceptSection = () => {
             const IconComponent = type.icon;
             return (
               <div key={index} className="reveal-item opacity-0 flex gap-6 items-start">
-                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mt-1 flex-shrink-0">
-                  <IconComponent className="w-6 h-6 text-white/80" />
+                <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center mt-1 flex-shrink-0">
+                  <IconComponent className="w-6 h-6 text-purple-300" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-white mb-2">{type.title}</h3>

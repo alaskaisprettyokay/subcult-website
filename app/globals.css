@@ -74,11 +74,17 @@ a {
   text-decoration: none;
 }
 
+/* Purple selection color */
+::selection {
+  background: rgba(124, 58, 237, 0.3);
+  color: #fff;
+}
+
 /* Custom utilities */
 .glass {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(124, 58, 237, 0.1);
 }
 
 /* Custom cursor effect for interactive elements */
@@ -116,9 +122,9 @@ a {
   transform: scale(1.05);
 }
 
-/* Input focus animation */
+/* Input focus animation - purple */
 input:focus {
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.3);
 }
 
 /* Toggle switch elastic animation */
@@ -126,13 +132,13 @@ input:focus {
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Step number glow animation - white */
+/* Step number glow animation - purple */
 @keyframes step-glow {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.15);
   }
   50% {
-    box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 40px rgba(124, 58, 237, 0.3);
   }
 }
 

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { resend } from '@/lib/email'
+import { resend } from '../../../lib/email'
 
 export async function POST(request: NextRequest) {
   try {

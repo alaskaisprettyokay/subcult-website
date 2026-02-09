@@ -49,7 +49,7 @@ const WhatIsSubcultSection = () => {
             <span className="text-gray-400 text-sm font-medium uppercase tracking-wider">About</span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
-            What is <span className="text-gray-400">SubCult?</span>
+            What is <span className="text-purple-400">SubCult?</span>
           </h2>
           <p className="text-xl text-gray-400">
             Infrastructure for music communities.
@@ -83,22 +83,22 @@ const WhatIsSubcultSection = () => {
             <h3 className="text-2xl font-bold text-white mb-6">Who it&apos;s for</h3>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="bg-white/5 rounded-sm p-6 border border-white/10">
-                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-4">
-                  <Radio className="w-6 h-6 text-white/80" />
+                <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center mb-4">
+                  <Radio className="w-6 h-6 text-purple-300" />
                 </div>
                 <h4 className="font-bold text-white mb-2">Tastemakers</h4>
                 <p className="text-sm text-gray-400">DJs, radio hosts, label heads, bloggers, promoters—build around your taste and capture value from it.</p>
               </div>
               <div className="bg-white/5 rounded-sm p-6 border border-white/10">
-                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-4">
-                  <Mic2 className="w-6 h-6 text-white/80" />
+                <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center mb-4">
+                  <Mic2 className="w-6 h-6 text-purple-300" />
                 </div>
                 <h4 className="font-bold text-white mb-2">Artists</h4>
                 <p className="text-sm text-gray-400">Direct connection to people who care about your work. No more shouting into the void of algorithms.</p>
               </div>
               <div className="bg-white/5 rounded-sm p-6 border border-white/10">
-                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-4">
-                  <Headphones className="w-6 h-6 text-white/80" />
+                <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center mb-4">
+                  <Headphones className="w-6 h-6 text-purple-300" />
                 </div>
                 <h4 className="font-bold text-white mb-2">Listeners</h4>
                 <p className="text-sm text-gray-400">Discovery that actually means something. Music chosen by people, not engagement metrics.</p>
@@ -106,7 +106,7 @@ const WhatIsSubcultSection = () => {
             </div>
           </div>
 
-          <div className="reveal-item opacity-0 glass rounded-sm p-8 border-l-4 border-white/30">
+          <div className="reveal-item opacity-0 glass rounded-sm p-8 border-l-4 border-purple-500/50">
             <h3 className="text-2xl font-bold text-white mb-4">Why this matters now</h3>
             <p className="text-gray-400 leading-relaxed">
               The current model isn&apos;t working. Artists can&apos;t make a living from streams. The people who find and champion music can&apos;t get paid at all. Listeners are drowning in infinite content but starving for actual connection. We think there&apos;s a better way—one where the people who make music and the people who champion it can actually build something sustainable.

@@ -68,7 +68,11 @@ const AnimatedBackground = () => {
 
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${particle.alpha})`;
+        // Mix purple tint into particles
+        const purpleTint = i % 3 === 0; // Every third particle gets purple tint
+        ctx.fillStyle = purpleTint 
+          ? `rgba(167, 139, 250, ${particle.alpha})` // purple-400
+          : `rgba(255, 255, 255, ${particle.alpha})`;
         ctx.fill();
 
         particlesRef.current.slice(i + 1).forEach((other) => {
@@ -79,7 +83,8 @@ const AnimatedBackground = () => {
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(other.x, other.y);
-            ctx.strokeStyle = `rgba(255, 255, 255, ${0.08 * (1 - dist / 100)})`;
+            // Purple-tinted connection lines
+            ctx.strokeStyle = `rgba(124, 58, 237, ${0.08 * (1 - dist / 100)})`;
             ctx.stroke();
           }
         });
