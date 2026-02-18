@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { resend, FROM_EMAIL } from '../../../../lib/email';
+import { welcomeListener, welcomeCurator } from '../../../../lib/email-templates';
 
 export async function POST(request: NextRequest) {
   try {
@@ -67,8 +68,12 @@ export async function POST(request: NextRequest) {
       const emailResponse = await resend.emails.send({
         from: FROM_EMAIL,
         to: [normalizedEmail],
-        subject: 'Thanks for signing up',
-        html: generateWelcomeEmail(userType, normalizedEmail),
+        subject: userType === 'curator'
+          ? 'Welcome to Subcult'
+          : 'Welcome to Subcult',
+        html: userType === 'curator'
+          ? welcomeCurator(normalizedEmail)
+          : welcomeListener(normalizedEmail),
       });
 
       if (emailResponse.error) {
@@ -119,54 +124,4 @@ export async function POST(request: NextRequest) {
   }
 }
 
-function generateWelcomeEmail(userType: 'listener' | 'curator', email: string): string {
-  const isCurator = userType === 'curator';
-  const logoUrl = 'https://subcult.music/subcult-vector.png';
-
-  const mainMessage = isCurator
-    ? "We're building SubCult for people who find and share music that matters."
-    : "We're building SubCult to help people discover music through the people they trust, not algorithms.";
-
-  return `
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
-    <body style="margin: 0; padding: 0; background-color: #1a1a1a; color: #ededed; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-
-      <div style="max-width: 600px; margin: 0 auto; padding: 40px 20px; background-color: #1a1a1a;">
-
-        <div style="text-align: center; margin-bottom: 40px;">
-          <img src="${logoUrl}" alt="SubCult" style="max-width: 120px; height: auto;" />
-        </div>
-
-        <div style="font-size: 16px; line-height: 1.6; color: #ccc;">
-          <p style="margin: 0 0 20px;">
-            Hey - thanks for signing up. ${mainMessage} If you want to follow along, we write about what we're working on here: <a href="https://alaskaisprettyokay.substack.com" style="color: #9b87f5; text-decoration: none;">Substack</a>
-          </p>
-
-          <p style="margin: 0 0 20px;">
-            We'll reach out when there's something to show you.
-          </p>
-
-          <p style="margin: 0; color: #ededed;">
-            AK
-          </p>
-        </div>
-
-        <div style="margin-top: 60px; padding-top: 20px; border-top: 1px solid #333; text-align: center;">
-          <p style="color: #555; font-size: 12px; margin: 0;">
-            <a href="https://subcult.music/unsubscribe?email=${encodeURIComponent(email)}" style="color: #555; text-decoration: none;">
-              Unsubscribe
-            </a>
-          </p>
-        </div>
-
-      </div>
-
-    </body>
-    </html>
-  `;
-}
+// Welcome email templates now imported from lib/email-templates.ts

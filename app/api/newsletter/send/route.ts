@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { resend, FROM_EMAIL, REPLY_TO_EMAIL } from '../../../../lib/email'
+import { newsletter } from '../../../../lib/email-templates'
 
 export async function POST(request: NextRequest) {
   try {
@@ -46,14 +47,16 @@ export async function POST(request: NextRequest) {
 
       console.log(`Sending newsletter to ${emails.length} subscribers`)
 
-      // Send newsletter (batch send to all contacts)
-      const emailResponse = await resend.emails.send({
+      // Send newsletter using batch API (individual emails, no shared to: field)
+      const batchEmails = emails.map((email: string) => ({
         from: FROM_EMAIL,
-        to: emails,
+        to: [email],
         reply_to: REPLY_TO_EMAIL,
         subject: subject,
-        html: generateNewsletterHTML(subject, content),
-      })
+        html: newsletter(subject, content, email),
+      }))
+
+      const emailResponse = await resend.batch.send(batchEmails)
 
       if (emailResponse.error) {
         console.error('Newsletter send failed:', emailResponse.error)
@@ -63,12 +66,12 @@ export async function POST(request: NextRequest) {
         )
       }
 
-      console.log('Newsletter sent successfully:', emailResponse.data?.id)
+      console.log('Newsletter sent successfully:', emailResponse.data)
 
       return NextResponse.json({
         success: true,
         count: emails.length,
-        emailId: emailResponse.data?.id
+        data: emailResponse.data
       })
 
     } catch (error: any) {
@@ -88,50 +91,4 @@ export async function POST(request: NextRequest) {
   }
 }
 
-function generateNewsletterHTML(subject: string, content: string): string {
-  // Convert line breaks to HTML
-  const htmlContent = content.replace(/\n/g, '<br>')
-
-  return `
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>${subject}</title>
-    </head>
-    <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-
-      <div style="text-align: center; margin-bottom: 30px;">
-        <h1 style="color: #1a1a1a; font-size: 28px; margin-bottom: 10px;">SubCult</h1>
-        <p style="color: #666; font-size: 14px; margin: 0;">Underground music communities</p>
-      </div>
-
-      <div style="background: #f8f9fa; border-radius: 8px; padding: 24px; margin-bottom: 30px;">
-        <h2 style="color: #1a1a1a; font-size: 24px; margin-bottom: 16px;">${subject}</h2>
-        <div style="color: #333; font-size: 16px; line-height: 1.6;">
-          ${htmlContent}
-        </div>
-      </div>
-
-      <div style="text-align: center; margin-bottom: 30px;">
-        <p style="font-size: 16px; margin-bottom: 20px; color: #666;">
-          Thanks for being part of the SubCult community!
-        </p>
-      </div>
-
-      <div style="border-top: 1px solid #eee; padding-top: 20px; text-align: center; color: #666; font-size: 14px;">
-        <p style="margin-bottom: 10px;">
-          Questions? Reply to this email.
-        </p>
-        <p style="margin: 0;">
-          <a href="https://subcult.com/unsubscribe" style="color: #666; text-decoration: underline;">
-            Unsubscribe
-          </a>
-        </p>
-      </div>
-
-    </body>
-    </html>
-  `
-}
+// Newsletter HTML template now imported from lib/email-templates.ts
