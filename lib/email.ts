@@ -17,5 +17,5 @@ export const resend = new Proxy({} as Resend, {
   }
 });
 
-export const FROM_EMAIL = process.env.FROM_EMAIL || 'hello@subcult.music';
+export const FROM_EMAIL = process.env.FROM_EMAIL || 'SubCult <hello@subcult.music>';
 export const REPLY_TO_EMAIL = process.env.REPLY_TO_EMAIL || 'hello@subcult.music';

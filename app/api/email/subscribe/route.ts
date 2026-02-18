@@ -67,9 +67,7 @@ export async function POST(request: NextRequest) {
       const emailResponse = await resend.emails.send({
         from: FROM_EMAIL,
         to: [normalizedEmail],
-        subject: userType === 'curator'
-          ? 'Welcome to Subcult - Start Creating!'
-          : 'Welcome to Subcult - Discover Music!',
+        subject: 'Thanks for signing up',
         html: generateWelcomeEmail(userType, normalizedEmail),
       });
 
@@ -121,9 +119,13 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// Simple HTML email template (we'll improve this later with React Email)
 function generateWelcomeEmail(userType: 'listener' | 'curator', email: string): string {
-  const isCreator = userType === 'curator';
+  const isCurator = userType === 'curator';
+  const logoUrl = 'https://subcult.music/subcult-vector.png';
+
+  const mainMessage = isCurator
+    ? "We're building SubCult for people who find and share music that matters."
+    : "We're building SubCult to help people discover music through the people they trust, not algorithms.";
 
   return `
     <!DOCTYPE html>
@@ -131,60 +133,37 @@ function generateWelcomeEmail(userType: 'listener' | 'curator', email: string): 
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Welcome to Subcult</title>
     </head>
-    <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+    <body style="margin: 0; padding: 0; background-color: #1a1a1a; color: #ededed; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
 
-      <div style="text-align: center; margin-bottom: 30px;">
-        <h1 style="color: #1a1a1a; font-size: 28px; margin-bottom: 10px;">Welcome to Subcult!</h1>
-        <p style="color: #666; font-size: 16px; margin: 0;">
-          ${isCreator ? 'Ready to showcase your music to the world?' : 'Discover underground music communities worldwide'}
-        </p>
-      </div>
+      <div style="max-width: 600px; margin: 0 auto; padding: 40px 20px; background-color: #1a1a1a;">
 
-      <div style="background: #f8f9fa; border-radius: 8px; padding: 24px; margin-bottom: 30px;">
-        <h2 style="color: #1a1a1a; font-size: 20px; margin-bottom: 16px;">
-          ${isCreator ? '🎵 For Creators & Curators' : '🎧 For Music Lovers'}
-        </h2>
-
-        ${isCreator ? `
-          <p style="margin-bottom: 12px;">As a music creator or curator, you'll get:</p>
-          <ul style="margin: 0; padding-left: 20px;">
-            <li style="margin-bottom: 8px;">Early access to submit your music</li>
-            <li style="margin-bottom: 8px;">Direct connection to underground music communities</li>
-            <li style="margin-bottom: 8px;">Tools to build your fanbase organically</li>
-            <li style="margin-bottom: 8px;">Opportunities to collaborate with other artists</li>
-          </ul>
-        ` : `
-          <p style="margin-bottom: 12px;">As a music listener, you'll get:</p>
-          <ul style="margin: 0; padding-left: 20px;">
-            <li style="margin-bottom: 8px;">Early access to discover new artists</li>
-            <li style="margin-bottom: 8px;">Curated playlists from underground scenes</li>
-            <li style="margin-bottom: 8px;">Direct support for emerging artists</li>
-            <li style="margin-bottom: 8px;">Exclusive content from your favorite creators</li>
-          </ul>
-        `}
-      </div>
-
-      <div style="text-align: center; margin-bottom: 30px;">
-        <p style="font-size: 16px; margin-bottom: 20px;">
-          We're building something special for underground music. You'll be the first to know when we launch!
-        </p>
-        <div style="background: #1a1a1a; color: white; border-radius: 6px; padding: 16px; font-size: 14px;">
-          <strong>🚀 Launch coming soon</strong><br>
-          We'll send you an invite as soon as we're ready
+        <div style="text-align: center; margin-bottom: 40px;">
+          <img src="${logoUrl}" alt="SubCult" style="max-width: 120px; height: auto;" />
         </div>
-      </div>
 
-      <div style="border-top: 1px solid #eee; padding-top: 20px; text-align: center; color: #666; font-size: 14px;">
-        <p style="margin-bottom: 10px;">
-          Questions? Just reply to this email.
-        </p>
-        <p style="margin: 0;">
-          <a href="https://subcult.com/unsubscribe?email=${encodeURIComponent(email)}" style="color: #666; text-decoration: underline;">
-            Unsubscribe
-          </a>
-        </p>
+        <div style="font-size: 16px; line-height: 1.6; color: #ccc;">
+          <p style="margin: 0 0 20px;">
+            Hey - thanks for signing up. ${mainMessage} If you want to follow along, we write about what we're working on here: <a href="https://alaskaisprettyokay.substack.com" style="color: #9b87f5; text-decoration: none;">Substack</a>
+          </p>
+
+          <p style="margin: 0 0 20px;">
+            We'll reach out when there's something to show you.
+          </p>
+
+          <p style="margin: 0; color: #ededed;">
+            AK
+          </p>
+        </div>
+
+        <div style="margin-top: 60px; padding-top: 20px; border-top: 1px solid #333; text-align: center;">
+          <p style="color: #555; font-size: 12px; margin: 0;">
+            <a href="https://subcult.music/unsubscribe?email=${encodeURIComponent(email)}" style="color: #555; text-decoration: none;">
+              Unsubscribe
+            </a>
+          </p>
+        </div>
+
       </div>
 
     </body>
