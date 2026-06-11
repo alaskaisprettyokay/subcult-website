@@ -85,24 +85,24 @@ export default function HowItWorksSection() {
       ref={sectionRef}
       className="relative px-5 py-28 md:px-10 md:py-40"
     >
-      <div className="pointer-events-none absolute right-0 top-1/3 h-[500px] w-[700px] rounded-full bg-brand/10 blur-[160px]" />
+      <div className="pointer-events-none absolute right-0 top-1/3 h-[500px] w-[700px] rounded-full bg-white/[0.03] blur-[160px]" />
 
       <div className="relative mx-auto max-w-6xl">
-        <div className="how-reveal mb-12 flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.3em] text-brand-light md:text-xs">
-          <span className="h-px w-10 bg-brand/60" aria-hidden="true" />
+        <div className="how-reveal mb-12 flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.3em] text-gray-400 md:text-xs">
+          <span className="h-px w-10 bg-white/30" aria-hidden="true" />
           04 — How it works
         </div>
 
         <h2 className="how-reveal max-w-2xl font-display text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl">
           A working product.{' '}
-          <span className="text-brand-light">Here&apos;s the loop.</span>
+          <span className="text-gray-500">Here&apos;s the loop.</span>
         </h2>
 
         {/* The core loop */}
         <div className="mt-16 grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
           {LOOP.map((step, i) => (
             <div key={i} className="how-reveal group bg-ink p-8">
-              <span className="font-display text-5xl font-bold text-brand/40 transition-colors duration-300 group-hover:text-brand-light">
+              <span className="font-display text-5xl font-bold text-white/25 transition-colors duration-300 group-hover:text-white">
                 0{i + 1}
               </span>
               <h3 className="mt-6 font-display text-xl font-bold text-white">
@@ -128,8 +128,8 @@ export default function HowItWorksSection() {
         <div className="mt-24 grid gap-10 lg:grid-cols-3">
           {ROLES.map((role, i) => (
             <div key={i} className="how-reveal">
-              <div className="flex items-center gap-3 border-b border-brand/30 pb-4">
-                <role.icon className="h-5 w-5 text-brand-light" />
+              <div className="flex items-center gap-3 border-b border-white/20 pb-4">
+                <role.icon className="h-5 w-5 text-white" />
                 <h3 className="font-display text-lg font-bold text-white">
                   {role.title}
                 </h3>
@@ -140,7 +140,7 @@ export default function HowItWorksSection() {
                     key={j}
                     className="flex gap-3 text-sm leading-relaxed text-gray-400"
                   >
-                    <span className="mt-0.5 font-mono text-[10px] text-brand-light">
+                    <span className="mt-0.5 font-mono text-[10px] text-gray-500">
                       0{j + 1}
                     </span>
                     {item}
@@ -152,9 +152,9 @@ export default function HowItWorksSection() {
         </div>
 
         {/* Payments */}
-        <div className="how-reveal mt-24 border border-brand/30 bg-brand/[0.07] p-8 md:p-12">
+        <div className="how-reveal mt-24 border border-white/20 bg-white/[0.04] p-8 md:p-12">
           <div className="flex items-center gap-3">
-            <Wallet className="h-6 w-6 text-brand-light" />
+            <Wallet className="h-6 w-6 text-white" />
             <h3 className="font-display text-2xl font-bold text-white md:text-3xl">
               How payments work
             </h3>

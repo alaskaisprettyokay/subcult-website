@@ -44,15 +44,15 @@ export default function CTASection() {
     >
       {/* Watermark globe */}
       <div
-        className="cta-globe pointer-events-none absolute left-1/2 top-1/2 h-[140vmin] w-[140vmin] -translate-x-1/2 -translate-y-1/2 text-brand opacity-[0.07]"
+        className="cta-globe pointer-events-none absolute left-1/2 top-1/2 h-[140vmin] w-[140vmin] -translate-x-1/2 -translate-y-1/2 text-white opacity-[0.05]"
         aria-hidden="true"
       >
         <GeometricLogo className="h-full w-full" />
       </div>
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand/15 blur-[180px]" />
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.04] blur-[180px]" />
 
       <div className="relative mx-auto flex max-w-4xl flex-col items-center text-center">
-        <p className="cta-reveal font-mono text-[11px] uppercase tracking-[0.4em] text-brand-light md:text-xs">
+        <p className="cta-reveal font-mono text-[11px] uppercase tracking-[0.4em] text-gray-400 md:text-xs">
           05 — Join the beta
         </p>
         <h2 className="cta-reveal mt-6 font-display text-5xl font-bold leading-[1.02] tracking-tight text-white md:text-7xl">

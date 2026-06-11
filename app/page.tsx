@@ -1,5 +1,6 @@
 import SmoothScroll from '../components/landing/SmoothScroll'
 import Nav from '../components/landing/Nav'
+import GlobeBackdrop from '../components/landing/GlobeBackdrop'
 import Hero from '../components/landing/Hero'
 import Marquee from '../components/landing/Marquee'
 import ManifestoSection from '../components/landing/ManifestoSection'
@@ -14,9 +15,14 @@ export default function Home() {
     <main className="grain relative min-h-screen bg-ink text-white">
       <SmoothScroll />
       <Nav />
-      <Hero />
-      <Marquee />
-      <ManifestoSection />
+      {/* The globe backdrop stays pinned behind these first three sections,
+          receding as the reader scrolls */}
+      <div className="relative">
+        <GlobeBackdrop />
+        <Hero />
+        <Marquee />
+        <ManifestoSection />
+      </div>
       <AboutSection />
       <TypesSection />
       <HowItWorksSection />

@@ -18,7 +18,7 @@ export default function Footer() {
     <footer className="relative border-t border-white/10 px-5 py-14 md:px-10">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 md:flex-row">
         <div className="flex items-center gap-3">
-          <div className="h-9 w-9 text-brand-light">
+          <div className="h-9 w-9 text-white">
             <GeometricLogo className="h-full w-full" />
           </div>
           <span className="font-clash text-sm font-semibold uppercase tracking-[0.35em] text-white">

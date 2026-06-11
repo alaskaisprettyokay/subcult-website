@@ -82,11 +82,11 @@ export default function ManifestoSection() {
       className="relative px-5 py-28 md:px-10 md:py-40"
     >
       {/* Ambient glow */}
-      <div className="pointer-events-none absolute left-1/2 top-0 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-brand/10 blur-[160px]" />
+      <div className="pointer-events-none absolute left-1/2 top-0 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-white/[0.03] blur-[160px]" />
 
       <div className="relative mx-auto max-w-5xl">
-        <div className="mb-12 flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.3em] text-brand-light md:text-xs">
-          <span className="h-px w-10 bg-brand/60" aria-hidden="true" />
+        <div className="mb-12 flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.3em] text-gray-400 md:text-xs">
+          <span className="h-px w-10 bg-white/30" aria-hidden="true" />
           01 — The problem
         </div>
 
@@ -102,7 +102,7 @@ export default function ManifestoSection() {
           {STATS.map((stat, i) => (
             <div key={i} className="stat-card bg-ink p-8 md:p-10">
               <div
-                className="stat-value font-display text-4xl font-bold tracking-tight text-brand-light md:text-5xl"
+                className="stat-value font-display text-4xl font-bold tracking-tight text-white md:text-5xl"
                 data-value={stat.value}
                 data-decimals={stat.decimals}
                 data-prefix={stat.prefix ?? ''}

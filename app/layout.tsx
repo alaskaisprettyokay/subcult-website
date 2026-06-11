@@ -36,7 +36,7 @@ export const viewport: Viewport = {
   maximumScale: 5,
   userScalable: true,
   viewportFit: 'cover', // For iOS notch support
-  themeColor: '#0a0a0f',
+  themeColor: '#0a0a0a',
 }
 
 export default function RootLayout({

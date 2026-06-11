@@ -71,7 +71,7 @@ export default function SignupForm({ id = 'hero' }: { id?: string }) {
             onClick={() => setUserType(value)}
             className={`px-5 py-2 font-mono text-xs uppercase tracking-widest transition-all duration-300 ${
               userType === value
-                ? 'bg-brand text-white'
+                ? 'bg-white text-black'
                 : 'text-gray-500 hover:text-white'
             }`}
           >
@@ -81,7 +81,7 @@ export default function SignupForm({ id = 'hero' }: { id?: string }) {
       </div>
 
       <form onSubmit={handleSubmit} noValidate>
-        <div className="flex border border-white/15 bg-white/[0.03] backdrop-blur-sm transition-colors focus-within:border-brand-light/60">
+        <div className="flex border border-white/15 bg-white/[0.03] backdrop-blur-sm transition-colors focus-within:border-white/50">
           <label htmlFor={`email-${id}`} className="sr-only">
             Email address
           </label>
@@ -99,7 +99,7 @@ export default function SignupForm({ id = 'hero' }: { id?: string }) {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="group flex shrink-0 items-center gap-2 bg-white px-5 py-4 font-mono text-xs uppercase tracking-widest text-black transition-colors duration-300 hover:bg-brand-light disabled:opacity-50 sm:px-7"
+            className="group flex shrink-0 items-center gap-2 bg-white px-5 py-4 font-mono text-xs uppercase tracking-widest text-black transition-colors duration-300 hover:bg-gray-300 disabled:opacity-50 sm:px-7"
           >
             {isSubmitting ? 'Joining…' : 'Join'}
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -111,7 +111,7 @@ export default function SignupForm({ id = 'hero' }: { id?: string }) {
         aria-live="polite"
         className={`mt-4 h-5 font-mono text-xs tracking-wide ${
           message.includes('Welcome')
-            ? 'text-brand-light'
+            ? 'text-gray-300'
             : message.includes('already')
               ? 'text-yellow-400'
               : 'text-red-400'

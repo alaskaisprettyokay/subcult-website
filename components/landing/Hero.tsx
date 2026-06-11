@@ -3,7 +3,6 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import GlobeScene from './GlobeScene'
 import SignupForm from './SignupForm'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -18,7 +17,7 @@ export default function Hero() {
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
       if (reduce) {
-        gsap.set(['.hero-char', '.hero-fade', '.hero-globe'], {
+        gsap.set(['.hero-char', '.hero-fade'], {
           opacity: 1,
           y: 0,
         })
@@ -26,30 +25,18 @@ export default function Hero() {
       }
 
       const tl = gsap.timeline({ defaults: { ease: 'expo.out' } })
-      tl.to('.hero-globe', { opacity: 1, duration: 2, ease: 'power2.inOut' }, 0)
-        .to(
-          '.hero-char',
-          { y: 0, duration: 1.4, stagger: 0.06 },
-          0.3
-        )
-        .to(
-          '.hero-fade',
-          { opacity: 1, y: 0, duration: 1, stagger: 0.12 },
-          1
-        )
+      tl.to(
+        '.hero-char',
+        { y: 0, duration: 1.4, stagger: 0.06 },
+        0.3
+      ).to(
+        '.hero-fade',
+        { opacity: 1, y: 0, duration: 1, stagger: 0.12 },
+        1
+      )
 
-      // Globe + title drift apart as you scroll away
-      gsap.to('.hero-globe', {
-        opacity: 0,
-        scale: 1.15,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: 'top top',
-          end: 'bottom 30%',
-          scrub: true,
-        },
-      })
+      // Title gently drifts and dims as you scroll away (globe is handled
+      // by GlobeBackdrop, which outlives this section)
       gsap.to('.hero-inner', {
         yPercent: -12,
         opacity: 0.25,
@@ -69,19 +56,11 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-5"
+      className="relative flex min-h-[100svh] flex-col items-center justify-center px-5"
     >
-      {/* Three.js globe */}
-      <div className="hero-globe absolute inset-0 opacity-0">
-        <GlobeScene />
-      </div>
-
-      {/* Legibility gradient */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(10,10,15,0.55)_75%)]" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-ink to-transparent" />
 
       <div className="hero-inner relative z-10 flex w-full max-w-5xl flex-col items-center pt-20">
-        <p className="hero-fade translate-y-6 font-mono text-[11px] uppercase tracking-[0.4em] text-brand-light opacity-0 md:text-xs">
+        <p className="hero-fade translate-y-6 font-mono text-[11px] uppercase tracking-[0.4em] text-gray-400 opacity-0 md:text-xs">
           Music is not content
         </p>
 
@@ -111,7 +90,7 @@ export default function Hero() {
       {/* Bottom meta strip */}
       <div className="hero-fade absolute bottom-6 left-0 right-0 z-10 hidden translate-y-6 items-center justify-between px-5 font-mono text-[10px] uppercase tracking-[0.25em] text-gray-600 opacity-0 md:flex md:px-10 md:text-[11px]">
         <span className="flex items-center gap-2">
-          <span className="live-dot inline-block h-1.5 w-1.5 rounded-full bg-brand-light" />
+          <span className="live-dot inline-block h-1.5 w-1.5 rounded-full bg-white" />
           Private beta
         </span>
         <span className="hidden md:inline">Scroll to explore</span>

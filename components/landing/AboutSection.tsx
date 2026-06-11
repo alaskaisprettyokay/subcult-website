@@ -52,8 +52,8 @@ export default function AboutSection() {
       className="relative px-5 py-28 md:px-10 md:py-40"
     >
       <div className="mx-auto max-w-6xl">
-        <div className="about-reveal mb-12 flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.3em] text-brand-light md:text-xs">
-          <span className="h-px w-10 bg-brand/60" aria-hidden="true" />
+        <div className="about-reveal mb-12 flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.3em] text-gray-400 md:text-xs">
+          <span className="h-px w-10 bg-white/30" aria-hidden="true" />
           02 — What is Subcult
         </div>
 
@@ -61,7 +61,7 @@ export default function AboutSection() {
           <div className="about-reveal">
             <h2 className="font-display text-4xl font-bold leading-tight tracking-tight text-white md:text-6xl">
               Infrastructure for{' '}
-              <span className="text-brand-light">music communities.</span>
+              <span className="text-gray-500">music communities.</span>
             </h2>
           </div>
 
@@ -83,7 +83,7 @@ export default function AboutSection() {
           </div>
         </div>
 
-        <div className="about-reveal mt-20 border border-brand/25 bg-brand/[0.06] p-8 md:p-12">
+        <div className="about-reveal mt-20 border border-white/20 bg-white/[0.04] p-8 md:p-12">
           <h3 className="font-display text-2xl font-bold text-white md:text-3xl">
             What we&apos;re building
           </h3>
@@ -113,8 +113,8 @@ export default function AboutSection() {
                 key={i}
                 className="about-reveal hover-card group bg-ink p-8 md:p-10"
               >
-                <div className="flex h-12 w-12 items-center justify-center border border-brand/30 bg-brand/10 transition-colors duration-300 group-hover:bg-brand/25">
-                  <a.icon className="h-5 w-5 text-brand-light" />
+                <div className="flex h-12 w-12 items-center justify-center border border-white/15 bg-white/[0.06] transition-colors duration-300 group-hover:bg-white/15">
+                  <a.icon className="h-5 w-5 text-white" />
                 </div>
                 <h4 className="mt-6 font-display text-xl font-bold text-white">
                   {a.title}

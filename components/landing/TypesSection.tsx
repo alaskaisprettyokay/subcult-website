@@ -93,12 +93,12 @@ export default function TypesSection() {
       className="relative overflow-hidden py-28 lg:flex lg:min-h-screen lg:flex-col lg:justify-center lg:py-0"
     >
       <div className="px-5 md:px-10 lg:absolute lg:top-16 lg:z-10">
-        <div className="mb-6 flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.3em] text-brand-light md:text-xs">
-          <span className="h-px w-10 bg-brand/60" aria-hidden="true" />
+        <div className="mb-6 flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.3em] text-gray-400 md:text-xs">
+          <span className="h-px w-10 bg-white/30" aria-hidden="true" />
           03 — What is a Subcult
         </div>
         <h2 className="max-w-2xl font-display text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl">
-          A subcult can be <span className="text-brand-light">many things.</span>
+          A subcult can be <span className="text-gray-500">many things.</span>
         </h2>
         <p className="mt-4 max-w-xl text-gray-400">
           But it&apos;s always built around someone with taste — and the trust
@@ -117,8 +117,8 @@ export default function TypesSection() {
           >
             <div>
               <div className="flex items-center justify-between">
-                <div className="flex h-12 w-12 items-center justify-center border border-brand/30 bg-brand/10">
-                  <t.icon className="h-5 w-5 text-brand-light" />
+                <div className="flex h-12 w-12 items-center justify-center border border-white/15 bg-white/[0.06]">
+                  <t.icon className="h-5 w-5 text-white" />
                 </div>
                 <span className="font-display text-5xl font-bold text-white/10">
                   0{i + 1}
@@ -136,7 +136,7 @@ export default function TypesSection() {
         ))}
 
         {/* Closing card */}
-        <article className="type-card flex flex-col justify-center border border-brand/40 bg-brand/10 p-8 md:p-10 lg:h-[420px] lg:w-[480px] lg:shrink-0">
+        <article className="type-card flex flex-col justify-center border border-white/30 bg-white/[0.05] p-8 md:p-10 lg:h-[420px] lg:w-[480px] lg:shrink-0">
           <p className="font-display text-xl font-bold leading-snug text-white md:text-2xl">
             Each subcult is unique, but they all share something: they&apos;re
             spaces where the relationship between tastemaker and audience can

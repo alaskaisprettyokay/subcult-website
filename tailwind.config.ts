@@ -17,11 +17,11 @@ const config: Config = {
       },
       colors: {
         brand: {
-          DEFAULT: "#7C3AED",
-          light: "#A78BFA",
-          dark: "#4C1D95",
+          DEFAULT: "#A1A1AA",
+          light: "#E4E4E7",
+          dark: "#3F3F46",
         },
-        ink: "#0a0a0f",
+        ink: "#0a0a0a",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

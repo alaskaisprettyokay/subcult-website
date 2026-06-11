@@ -51,8 +51,8 @@ export default function GlobeScene() {
     const COUNT = isMobile ? 1500 : 2800
     const positions = new Float32Array(COUNT * 3)
     const colors = new Float32Array(COUNT * 3)
-    const cDark = new THREE.Color('#4C1D95')
-    const cLight = new THREE.Color('#A78BFA')
+    const cDark = new THREE.Color('#3F3F46')
+    const cLight = new THREE.Color('#FAFAFA')
     const golden = Math.PI * (3 - Math.sqrt(5))
     const tmp = new THREE.Color()
     for (let i = 0; i < COUNT; i++) {
@@ -84,9 +84,9 @@ export default function GlobeScene() {
 
     // --- Wireframe lat/long rings, like the logo
     const ringMat = new THREE.LineBasicMaterial({
-      color: 0x7c3aed,
+      color: 0xa1a1aa,
       transparent: true,
-      opacity: 0.22,
+      opacity: 0.16,
     })
     disposables.push(ringMat)
 
@@ -123,9 +123,9 @@ export default function GlobeScene() {
     const ctx = haloCanvas.getContext('2d')
     if (ctx) {
       const grad = ctx.createRadialGradient(128, 128, 0, 128, 128, 128)
-      grad.addColorStop(0, 'rgba(124, 58, 237, 0.35)')
-      grad.addColorStop(0.5, 'rgba(124, 58, 237, 0.12)')
-      grad.addColorStop(1, 'rgba(124, 58, 237, 0)')
+      grad.addColorStop(0, 'rgba(255, 255, 255, 0.16)')
+      grad.addColorStop(0.5, 'rgba(255, 255, 255, 0.05)')
+      grad.addColorStop(1, 'rgba(255, 255, 255, 0)')
       ctx.fillStyle = grad
       ctx.fillRect(0, 0, 256, 256)
     }

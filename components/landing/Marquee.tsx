@@ -16,7 +16,7 @@ export default function Marquee({ reverse = false }: { reverse?: boolean }) {
           <span className="whitespace-nowrap font-display text-2xl font-bold uppercase tracking-tight text-white/90 md:text-4xl">
             {p}
           </span>
-          <span className="mx-6 text-brand md:mx-10" aria-hidden="true">
+          <span className="mx-6 text-white/30 md:mx-10" aria-hidden="true">
             ✦
           </span>
         </span>
@@ -26,7 +26,7 @@ export default function Marquee({ reverse = false }: { reverse?: boolean }) {
 
   return (
     <div
-      className="relative overflow-hidden border-y border-white/10 bg-brand/[0.06] py-5 md:py-7"
+      className="relative overflow-hidden border-y border-white/10 bg-white/[0.02] py-5 md:py-7"
       aria-hidden="true"
     >
       <div className={`marquee-track ${reverse ? 'marquee-track-reverse' : ''}`}>

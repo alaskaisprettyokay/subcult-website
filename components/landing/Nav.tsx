@@ -37,7 +37,7 @@ export default function Nav() {
           className="flex items-center gap-3"
           aria-label="Subcult — back to top"
         >
-          <div className="h-8 w-8 text-brand-light">
+          <div className="h-8 w-8 text-white">
             <GeometricLogo className="h-full w-full" />
           </div>
           <span className="font-clash text-sm font-semibold uppercase tracking-[0.35em] text-white">
@@ -59,7 +59,7 @@ export default function Nav() {
 
         <button
           onClick={() => scrollTo('join')}
-          className="border border-brand/60 bg-brand/10 px-5 py-2 font-mono text-xs uppercase tracking-[0.2em] text-brand-light transition-all duration-300 hover:bg-brand hover:text-white"
+          className="border border-white/40 bg-white/5 px-5 py-2 font-mono text-xs uppercase tracking-[0.2em] text-white transition-all duration-300 hover:bg-white hover:text-black"
         >
           Join
         </button>
