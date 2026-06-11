@@ -9,7 +9,19 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "system-ui", "sans-serif"],
+        clash: ["var(--font-clash)", "var(--font-display)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "monospace"],
+      },
       colors: {
+        brand: {
+          DEFAULT: "#A1A1AA",
+          light: "#E4E4E7",
+          dark: "#3F3F46",
+        },
+        ink: "#0a0a0a",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
