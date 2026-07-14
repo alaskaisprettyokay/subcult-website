@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { resend, FROM_EMAIL } from '../../../../lib/email';
+import { resend, getContactsResend, FROM_EMAIL } from '../../../../lib/email';
 import { welcomeListener, welcomeCurator } from '../../../../lib/email-templates';
 
 export async function POST(request: NextRequest) {
@@ -32,37 +32,77 @@ export async function POST(request: NextRequest) {
     }
 
     try {
-      // Step 1: Add contact to Resend audience (if audience ID is configured)
-      let contactId: string | undefined;
-      
-      if (process.env.RESEND_AUDIENCE_ID && process.env.RESEND_AUDIENCE_ID !== 'your_audience_id') {
-        try {
-          const contactResponse = await resend.contacts.create({
-            email: normalizedEmail,
-            firstName: userType === 'curator' ? 'Creator' : 'Listener',
-            audienceId: process.env.RESEND_AUDIENCE_ID,
-          });
+      // Step 1: Add the contact before sending the welcome email. If this
+      // fails, stop: a successful email must never imply a missing audience
+      // subscription.
+      const audienceId = process.env.RESEND_AUDIENCE_ID;
 
-          if (contactResponse.error) {
-            // Check if contact already exists
-            if (contactResponse.error.message?.includes('already exists') ||
-                contactResponse.error.message?.includes('duplicate') ||
-                contactResponse.error.message?.includes('Contact already exists')) {
-              console.log('Contact already exists in Resend audience');
-              // Continue - this is fine, they're already subscribed
-            } else {
-              console.error('Resend contact creation error:', contactResponse.error);
-              // Continue anyway - we'll still try to send the email
-            }
-          } else {
-            contactId = contactResponse.data?.id;
-            console.log('Contact added to Resend audience:', contactId);
-          }
-        } catch (contactError: any) {
-          console.error('Error adding contact to Resend:', contactError);
-          // Continue - we'll still try to send the email
-        }
+      if (!audienceId || audienceId === 'your_audience_id') {
+        console.error('RESEND_AUDIENCE_ID not configured');
+        return NextResponse.json(
+          { error: 'Subscription service not configured. Please contact support.' },
+          { status: 500 }
+        );
       }
+
+      const contactsResend = getContactsResend();
+      const existingContactResponse = await contactsResend.contacts.get({
+        audienceId,
+        // Resend's audience API accepts either a contact ID or an email in
+        // this path, even though this SDK version names the field `id`.
+        id: normalizedEmail,
+      });
+
+      if (existingContactResponse.data) {
+        return NextResponse.json(
+          { error: 'ALREADY_SUBSCRIBED' },
+          { status: 409 }
+        );
+      }
+
+      if (
+        existingContactResponse.error &&
+        existingContactResponse.error.name !== 'not_found'
+      ) {
+        console.error(
+          'Resend contact lookup error:',
+          existingContactResponse.error
+        );
+        return NextResponse.json(
+          { error: 'Could not check your waitlist status. Please try again.' },
+          { status: 502 }
+        );
+      }
+
+      const contactResponse = await contactsResend.contacts.create({
+        email: normalizedEmail,
+        firstName: userType === 'curator' ? 'Creator' : 'Listener',
+        audienceId,
+      });
+
+      if (contactResponse.error) {
+        const message = contactResponse.error.message || '';
+        const isDuplicate =
+          message.includes('already exists') ||
+          message.includes('duplicate') ||
+          message.includes('Contact already exists');
+
+        if (isDuplicate) {
+          return NextResponse.json(
+            { error: 'ALREADY_SUBSCRIBED' },
+            { status: 409 }
+          );
+        }
+
+        console.error('Resend contact creation error:', contactResponse.error);
+        return NextResponse.json(
+          { error: 'Could not add you to the waitlist. Please try again.' },
+          { status: 502 }
+        );
+      }
+
+      const contactId = contactResponse.data?.id;
+      console.log('Contact added to Resend audience:', contactId);
 
       // Step 2: Send welcome email
       const emailResponse = await resend.emails.send({
