@@ -1,42 +1,33 @@
-'use client'
-
-import { useEffect } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-// Import our new components
-import AnimatedBackground from '../components/AnimatedBackground'
-import Navigation from '../components/Navigation'
-import HeroSection from '../components/HeroSection'
-import WhatIsSubcultSection from '../components/WhatIsSubcultSection'
-import SubcultConceptSection from '../components/SubcultConceptSection'
-import HowItWorksSection from '../components/HowItWorksSection'
-import Footer from '../components/Footer'
-
-// Register GSAP plugins
-gsap.registerPlugin(ScrollTrigger)
+import SmoothScroll from '../components/landing/SmoothScroll'
+import Nav from '../components/landing/Nav'
+import GlobeBackdrop from '../components/landing/GlobeBackdrop'
+import Hero from '../components/landing/Hero'
+import Marquee from '../components/landing/Marquee'
+import ManifestoSection from '../components/landing/ManifestoSection'
+import AboutSection from '../components/landing/AboutSection'
+import TypesSection from '../components/landing/TypesSection'
+import HowItWorksSection from '../components/landing/HowItWorksSection'
+import CTASection from '../components/landing/CTASection'
+import Footer from '../components/landing/Footer'
 
 export default function Home() {
-  useEffect(() => {
-    // Initialize GSAP ScrollTrigger
-    ScrollTrigger.refresh()
-  }, [])
-
   return (
-    <main className="min-h-screen bg-[#1a1a1a] text-white relative">
-      {/* Animated particle background */}
-      <AnimatedBackground />
-
-      {/* Sticky navigation (appears on scroll) */}
-      <Navigation />
-
-      {/* Hero section with email signup */}
-      <HeroSection />
-
-      {/* Content sections */}
-      <WhatIsSubcultSection />
-      <SubcultConceptSection />
+    <main className="grain relative min-h-screen bg-ink text-white">
+      <SmoothScroll />
+      <Nav />
+      {/* The globe backdrop stays pinned behind these first three sections,
+          receding as the reader scrolls */}
+      <div className="relative">
+        <GlobeBackdrop />
+        <Hero />
+        <Marquee />
+        <ManifestoSection />
+      </div>
+      <AboutSection />
+      <TypesSection />
       <HowItWorksSection />
+      <Marquee reverse />
+      <CTASection />
       <Footer />
     </main>
   )
