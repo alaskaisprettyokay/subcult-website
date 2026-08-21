@@ -34,3 +34,10 @@ yarn-error.log*
 # data
 /.data/
 
+# local agent/planning and discarded implementation artifacts
+/.claude/
+/.cursorrules
+/backup/
+/newsite/
+/thoughts/
+
