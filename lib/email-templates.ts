@@ -1,19 +1,24 @@
-// Subcult Email Templates
-// Design system: #1a1a1a bg, white text, purple accent, Inter font, minimal underground aesthetic
+// Subcult email templates.
+// Brand: near-black paper, warm off-white type, sage for links, the S mark, plain sans-serif,
+// few words. Matches the Subcult app and the ADE page. Flat layout (no cards) so it renders the
+// same in Gmail, Apple Mail and Outlook.
 
 const BRAND = {
-  bg: '#1a1a1a',
-  bgCard: '#242424',
-  bgCardBorder: '#333333',
-  text: '#ffffff',
-  textSecondary: '#999999',
-  textMuted: '#666666',
-  accent: '#c084fc', // purple-400
-  accentDim: '#7c3aed20', // purple with opacity
-  link: '#c084fc',
-  font: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, sans-serif",
-  logoUrl: 'https://subcult.music/subcult-vector.png',
-  wordmarkUrl: 'https://subcult.music/SUBCULT.png',
+  bg: '#0d0e0c',
+  bgCard: '#0d0e0c',
+  bgCardBorder: '#2b2d28',
+  rule: '#2b2d28',
+  text: '#eeeee8',
+  textSecondary: '#b4b9ab',
+  textMuted: '#8f9487',
+  accent: '#a2b18d',
+  accentDim: '#a2b18d20',
+  link: '#a2b18d',
+  font: "Helvetica, Arial, sans-serif",
+  markUrl: 'https://subcult.music/email/subcult-mark.png',
+  // Kept for older templates that still reference them.
+  logoUrl: 'https://subcult.music/email/subcult-mark.png',
+  wordmarkUrl: 'https://subcult.music/email/subcult-mark.png',
   siteUrl: 'https://subcult.music',
 }
 
@@ -30,16 +35,16 @@ function layout(content: string, email?: string): string {
   <style>body{font-family:Arial,sans-serif!important;}</style>
   <![endif]-->
 </head>
-<body style="margin:0; padding:0; background-color:${BRAND.bg}; font-family:${BRAND.font}; -webkit-font-smoothing:antialiased;">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:${BRAND.bg};">
+<body style="margin:0; padding:0; background-color:${BRAND.bg}; color:${BRAND.text}; font-family:${BRAND.font}; -webkit-font-smoothing:antialiased;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="${BRAND.bg}" style="background-color:${BRAND.bg};">
     <tr>
-      <td align="center" style="padding:40px 16px;">
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;">
+      <td align="center" style="padding:56px 24px 40px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:480px;">
 
-          <!-- Logo -->
+          <!-- Mark -->
           <tr>
-            <td align="center" style="padding-bottom:32px;">
-              <img src="${BRAND.wordmarkUrl}" alt="SUBCULT" width="160" style="display:block; height:auto; filter:brightness(0) invert(1);" />
+            <td align="left" style="padding-bottom:40px;">
+              <img src="${BRAND.markUrl}" alt="Subcult" width="56" height="56" style="display:block; width:56px; height:56px; border:0;" />
             </td>
           </tr>
 
@@ -48,15 +53,14 @@ function layout(content: string, email?: string): string {
 
           <!-- Footer -->
           <tr>
-            <td style="padding-top:40px; border-top:1px solid #333;">
+            <td style="padding-top:40px;">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td align="center" style="padding:20px 0;">
-                    <p style="margin:0 0 8px; color:${BRAND.textMuted}; font-size:13px; line-height:1.5;">
-                      You're receiving this because you signed up at
-                      <a href="${BRAND.siteUrl}" style="color:${BRAND.accent}; text-decoration:none;">subcult.music</a>
+                  <td style="border-top:1px solid ${BRAND.rule}; padding-top:20px;">
+                    <p style="margin:0 0 6px; color:${BRAND.textMuted}; font-size:12px; line-height:1.6;">
+                      You joined the Subcult mailing list.
                     </p>
-                    <p style="margin:0; color:${BRAND.textMuted}; font-size:13px;">
+                    <p style="margin:0; color:${BRAND.textMuted}; font-size:12px; line-height:1.6;">
                       <a href="${BRAND.siteUrl}/unsubscribe${email ? '?email=' + encodeURIComponent(email) : ''}" style="color:${BRAND.textMuted}; text-decoration:underline;">Unsubscribe</a>
                     </p>
                   </td>
@@ -75,53 +79,33 @@ function layout(content: string, email?: string): string {
 
 function card(content: string): string {
   return `<tr>
-  <td style="background-color:${BRAND.bgCard}; border:1px solid ${BRAND.bgCardBorder}; border-radius:4px; padding:28px 24px;">
+  <td style="padding:0;">
     ${content}
   </td>
 </tr>`
 }
 
 function divider(): string {
-  return `<tr><td style="padding:16px 0;"><hr style="border:none; border-top:1px solid #333; margin:0;" /></td></tr>`
+  return `<tr><td style="padding:16px 0;"><hr style="border:none; border-top:1px solid ${BRAND.rule}; margin:0;" /></td></tr>`
 }
+
+const h1 = `margin:0 0 20px; color:${BRAND.text}; font-size:26px; font-weight:700; line-height:1.15; letter-spacing:-0.5px;`
+const body = `margin:0 0 18px; color:${BRAND.textSecondary}; font-size:16px; line-height:1.6;`
+const sign = `margin:28px 0 0; color:${BRAND.text}; font-size:16px; line-height:1.6;`
 
 // ─── Welcome Email (Listener) ─────────────────────────────
 
 export function welcomeListener(email: string): string {
   return layout(`
     ${card(`
-      <h1 style="margin:0 0 16px; color:${BRAND.text}; font-size:22px; font-weight:600; letter-spacing:-0.3px;">
-        Welcome to Subcult
-      </h1>
-      <p style="margin:0 0 20px; color:${BRAND.textSecondary}; font-size:15px; line-height:1.6;">
-        You're in. We're building a new way to discover underground music — driven by people with taste, not algorithms.
+      <h1 style="${h1}">You’re on the list.</h1>
+      <p style="${body}">
+        Subcult is music passed from person to person: collections kept by people you trust, with the reason each record matters.
       </p>
-      <p style="margin:0 0 20px; color:${BRAND.textSecondary}; font-size:15px; line-height:1.6;">
-        Here's what's coming for you:
+      <p style="${body}">
+        We’ll write when there’s something to hear: a release, a show, an invite.
       </p>
-      <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 20px;">
-        <tr>
-          <td style="padding:6px 0; color:${BRAND.textSecondary}; font-size:14px; line-height:1.5;">
-            <span style="color:${BRAND.accent}; margin-right:8px;">→</span>
-            Music curated by real people from underground scenes worldwide
-          </td>
-        </tr>
-        <tr>
-          <td style="padding:6px 0; color:${BRAND.textSecondary}; font-size:14px; line-height:1.5;">
-            <span style="color:${BRAND.accent}; margin-right:8px;">→</span>
-            Direct connection to artists — no middlemen, no algorithms
-          </td>
-        </tr>
-        <tr>
-          <td style="padding:6px 0; color:${BRAND.textSecondary}; font-size:14px; line-height:1.5;">
-            <span style="color:${BRAND.accent}; margin-right:8px;">→</span>
-            Support the music you love, directly and instantly
-          </td>
-        </tr>
-      </table>
-      <p style="margin:0; color:${BRAND.textMuted}; font-size:13px; line-height:1.5;">
-        We'll let you know when we launch. Until then — keep digging.
-      </p>
+      <p style="${sign}">AK</p>
     `)}
   `, email)
 }
@@ -131,38 +115,14 @@ export function welcomeListener(email: string): string {
 export function welcomeCurator(email: string): string {
   return layout(`
     ${card(`
-      <h1 style="margin:0 0 16px; color:${BRAND.text}; font-size:22px; font-weight:600; letter-spacing:-0.3px;">
-        Welcome to Subcult
-      </h1>
-      <p style="margin:0 0 20px; color:${BRAND.textSecondary}; font-size:15px; line-height:1.6;">
-        You're in. We're building infrastructure for people like you — the ones who find, champion, and create the music that matters.
+      <h1 style="${h1}">You’re on the list.</h1>
+      <p style="${body}">
+        Subcult is built for the people who find and carry music: curators, DJs and artists. Your taste is the work, and it should be credited and paid.
       </p>
-      <p style="margin:0 0 20px; color:${BRAND.textSecondary}; font-size:15px; line-height:1.6;">
-        Here's what we're building for you:
+      <p style="${body}">
+        We’ll be in touch with early access. Reply any time; we read everything.
       </p>
-      <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 20px;">
-        <tr>
-          <td style="padding:6px 0; color:${BRAND.textSecondary}; font-size:14px; line-height:1.5;">
-            <span style="color:${BRAND.accent}; margin-right:8px;">→</span>
-            Your own space — a community built around your taste
-          </td>
-        </tr>
-        <tr>
-          <td style="padding:6px 0; color:${BRAND.textSecondary}; font-size:14px; line-height:1.5;">
-            <span style="color:${BRAND.accent}; margin-right:8px;">→</span>
-            Direct payments from listeners — instant, global, no 30% cut
-          </td>
-        </tr>
-        <tr>
-          <td style="padding:6px 0; color:${BRAND.textSecondary}; font-size:14px; line-height:1.5;">
-            <span style="color:${BRAND.accent}; margin-right:8px;">→</span>
-            Curation recognized as labor — because it is
-          </td>
-        </tr>
-      </table>
-      <p style="margin:0; color:${BRAND.textMuted}; font-size:13px; line-height:1.5;">
-        We'll reach out soon with early access. Reply to this email anytime — we read everything.
-      </p>
+      <p style="${sign}">AK</p>
     `)}
   `, email)
 }
