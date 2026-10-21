@@ -103,7 +103,7 @@ export function welcomeListener(email: string): string {
         Subcult is music passed from person to person: collections kept by people you trust, with the reason each record matters.
       </p>
       <p style="${body}">
-        We’ll write when there’s something to hear: a release, a show, an invite.
+        Hear from us soon.
       </p>
       <p style="${sign}">AK</p>
     `)}
